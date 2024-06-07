@@ -15,6 +15,7 @@ const BackgroundImageStyled = styled.img`
   height: 101%;
   object-fit: cover;
   position: absolute;
+  z-index: -1000;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
