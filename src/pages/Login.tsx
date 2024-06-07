@@ -1,0 +1,37 @@
+import styled from "styled-components";
+import BackgroundImage from "../components/BackgroundImage";
+import LoginForm from "../layouts/LoginForm";
+
+const Login = () => {
+  return (
+    <LoginStyled>
+      <BackgroundImage blur={true} />
+      <img
+        src="./logos/LogoKE_WhitePink_NoDate_V2_RVB.svg"
+        alt="Katherine & Eliott - Logo"
+        className="logo"
+      />
+      <LoginForm />
+    </LoginStyled>
+  );
+};
+
+//Styled Component
+const LoginStyled = styled.main`
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .logo {
+    width: 70vw;
+    max-width: 350px;
+    margin-bottom: 20px;
+    position: relative;
+    left: 5px;
+  }
+`;
+
+export default Login;
