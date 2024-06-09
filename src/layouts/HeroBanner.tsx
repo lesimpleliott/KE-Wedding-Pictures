@@ -12,7 +12,7 @@ const HeroBanner = () => {
         </h1>
         <h2>18 mai 2024</h2>
       </div>
-      <JumpinButton linky="#" />
+      <JumpinButton linky="#" className="fa-solid fa-angles-down" />
     </HeroBannerStyled>
   );
 };
@@ -21,11 +21,12 @@ const HeroBannerStyled = styled.section`
   width: 100%;
   height: 100vh;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 25px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  overflow: hidden;
 
   .textBanner {
     width: 100%;

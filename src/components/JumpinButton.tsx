@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const JumpinButton = ({ linky }: { linky: string }) => {
+type JumpinButtonProps = {
+  linky: string;
+  className: string;
+};
+
+const JumpinButton = ({ linky, className }: JumpinButtonProps) => {
   const [isJumping, setIsJumping] = useState(false);
 
   useEffect(() => {
@@ -15,7 +20,7 @@ const JumpinButton = ({ linky }: { linky: string }) => {
   return (
     <JumpinButtonStyled href={linky}>
       <span className={`btn ${isJumping ? "jumpButton" : ""}`}>
-        <i className="fa-solid fa-angles-down"></i>
+        <i className={className}></i>
       </span>
     </JumpinButtonStyled>
   );
