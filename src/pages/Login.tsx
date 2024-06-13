@@ -19,11 +19,13 @@ const Login = () => {
 //Styled Component
 const LoginStyled = styled.main`
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
+  padding-bottom: 10vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  position: relative;
 
   .logo {
     width: 70vw;

@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const toggleVisibility = () => {
     const pwdInput = document.getElementById("pwdInput") as HTMLInputElement;
     const visibleIcon = document.getElementById("visibleIcon") as HTMLElement;
@@ -16,8 +19,20 @@ const LoginForm = () => {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const pwdInput = document.getElementById("pwdInput") as HTMLInputElement;
+
+    if (pwdInput.value === "KE2022") {
+      navigate("/home");
+    } else {
+      pwdInput.value = "";
+      pwdInput.placeholder = "Mot de passe incorrect";
+    }
+  };
+
   return (
-    <LoginFormStyled>
+    <LoginFormStyled onSubmit={handleSubmit}>
       <input type="password" id="pwdInput" placeholder="Mot de passe" />
       <button
         type="button"
