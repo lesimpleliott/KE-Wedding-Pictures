@@ -7,12 +7,16 @@ const HeroBanner = () => {
     <HeroBannerStyled>
       <BackgroundImage />
       <div className="textBanner">
-        <h1>
+        {/* <h1>
           Katherine <strong>&</strong> Eliott
         </h1>
-        <h2>18 mai 2024</h2>
+        <h2>18 mai 2024</h2> */}
+        <img src="./logos/LogoKE_WhitePink_V2_RVB.svg" alt="" />
       </div>
-      <JumpinButton linky="#" className="fa-solid fa-angles-down" />
+      <JumpinButton
+        linky="#albumsContainer"
+        className="fa-solid fa-angles-down"
+      />
     </HeroBannerStyled>
   );
 };
@@ -30,13 +34,18 @@ const HeroBannerStyled = styled.section`
 
   .textBanner {
     width: 100%;
-    padding: 2rem;
+    padding: 0.5rem;
     background-color: rgba(78, 78, 78, 0.3);
     position: absolute;
-    top: 50%;
+    top: 33%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+
+    img {
+      width: 20vw;
+      min-width: 250px;
+    }
 
     h1 {
       font-size: 3rem;

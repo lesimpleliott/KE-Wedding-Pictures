@@ -11,14 +11,15 @@ const BackgroundImage = ({ blur }: { blur?: boolean }) => {
 };
 
 const BackgroundImageStyled = styled.img`
-  width: 101%;
-  height: 101%;
-  object-fit: cover;
+  width: 102%;
+  height: 102%;
   position: absolute;
-  z-index: -1000;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: -100;
+  object-fit: cover;
+  object-position: 0 70%;
 
   &.blur {
     filter: brightness(0.8) blur(5px);

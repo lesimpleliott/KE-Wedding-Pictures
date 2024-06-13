@@ -12,7 +12,7 @@ const JumpinButton = ({ linky, className }: JumpinButtonProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIsJumping((prev) => !prev);
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -20,7 +20,7 @@ const JumpinButton = ({ linky, className }: JumpinButtonProps) => {
   return (
     <JumpinButtonStyled href={linky}>
       <span className={`btn ${isJumping ? "jumpButton" : ""}`}>
-        <i className={className}></i>
+        <i className={`icon ${className}`}></i>
       </span>
     </JumpinButtonStyled>
   );
@@ -30,14 +30,14 @@ const JumpinButtonStyled = styled.a`
   --size: 70px;
   --arrowsize: 1.7rem;
 
-  display: inline-block;
+  /* display: inline-block; */
   color: var(--contrast);
 
   .btn {
     height: var(--size);
     width: var(--size);
     border-radius: 75px;
-    background: rgba(78, 78, 78, 0.2);
+    background: rgba(78, 78, 78, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,6 +69,11 @@ const JumpinButtonStyled = styled.a`
       border: solid 2px var(--contrast);
       border-radius: 75px;
     }
+  }
+
+  .icon {
+    color: var(--contrast);
+    font-size: 100%;
   }
 
   .jumpButton {
