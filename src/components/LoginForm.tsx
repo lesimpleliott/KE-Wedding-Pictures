@@ -20,10 +20,11 @@ const LoginForm = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // FONCTION PROVISOIRE  / A MODIFIER
     e.preventDefault();
     const pwdInput = document.getElementById("pwdInput") as HTMLInputElement;
 
-    if (pwdInput.value === "KE2022") {
+    if (pwdInput.value === "katelio") {
       navigate("/home");
     } else {
       pwdInput.value = "";

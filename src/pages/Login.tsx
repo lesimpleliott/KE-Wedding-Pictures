@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import BackgroundImage from "../components/BackgroundImage";
-import LoginForm from "../layouts/LoginForm";
+import LoginForm from "../components/LoginForm";
 
 const Login = () => {
   return (
