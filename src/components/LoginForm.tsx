@@ -10,12 +10,12 @@ const LoginForm = () => {
 
     if (pwdInput.type === "password") {
       pwdInput.type = "text";
-      visibleIcon.classList.remove("fa-eye");
-      visibleIcon.classList.add("fa-eye-slash");
-    } else {
-      pwdInput.type = "password";
       visibleIcon.classList.remove("fa-eye-slash");
       visibleIcon.classList.add("fa-eye");
+    } else {
+      pwdInput.type = "password";
+      visibleIcon.classList.remove("fa-eye");
+      visibleIcon.classList.add("fa-eye-slash");
     }
   };
 

@@ -19,7 +19,7 @@ const BackgroundImageStyled = styled.img`
   transform: translate(-50%, -50%);
   z-index: -100;
   object-fit: cover;
-  object-position: 0 70%;
+  object-position: 50% 70%;
 
   &.blur {
     filter: brightness(0.8) blur(5px);
