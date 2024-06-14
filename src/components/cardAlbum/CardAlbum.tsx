@@ -11,7 +11,10 @@ const CardAlbum = ({ album }: { album: AlbumType }) => {
           src={`${album.path}/lowRes/${album.cover}`}
           alt={`Photos de l'album ${album.title}`}
         />
-        <HoverBox imageCount={album.images.length} />
+        <HoverBox
+          imageCount={album.images.length}
+          downloadLink={album.downloadLink}
+        />
       </div>
       <h2 className="title">{album.title}</h2>
     </CardAlbumStyled>
@@ -54,6 +57,7 @@ const CardAlbumStyled = styled.article`
   }
 
   .title {
+    font-size: 1rem;
     height: fit-content;
     padding-top: 0.5rem;
     text-align: center;

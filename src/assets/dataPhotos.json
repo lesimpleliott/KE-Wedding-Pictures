@@ -3,9 +3,9 @@
     {
       "id": "album1",
       "title": "Cérémonie Civile",
-      "downloadLink": "#",
+      "downloadLink": "./photos/Ceremonie-civile/Ceremonie-civile.zip",
       "path": "./photos/Ceremonie-civile",
-      "cover": "MariageKE_Ceremonie-civile_1.webp",
+      "cover": "MariageKE_Ceremonie-civile_54.webp",
       "images": [
         {
           "id": "CIVILE1",
@@ -1143,11 +1143,10 @@
         }
       ]
     },
-
     {
       "id": "album2",
       "title": "Cérémonie Laïque",
-      "downloadLink": "#",
+      "downloadLink": "./photos/Ceremonie-laique/Ceremonie-laique.zip",
       "path": "./photos/Ceremonie-laique",
       "cover": "MariageKE_Ceremonie-laique_11.webp",
       "images": [
@@ -2861,7 +2860,7 @@
     {
       "id": "album3",
       "title": "Photos de groupes",
-      "downloadLink": "#",
+      "downloadLink": "./photos/Photos-groupe/Photos-groupe.zip",
       "path": "./photos/Photos-groupes",
       "cover": "MariageKE_Photos-groupes_35.webp",
       "images": [
@@ -3081,7 +3080,7 @@
     {
       "id": "album4",
       "title": "Cocktail",
-      "downloadLink": "#",
+      "downloadLink": "./photos/Cocktail/Cocktail.zip",
       "path": "./photos/Cocktail",
       "cover": "MariageKE_Cocktail_46.webp",
       "images": [
@@ -4063,7 +4062,7 @@
     {
       "id": "album5",
       "title": "Décoration Diner",
-      "downloadLink": "#",
+      "downloadLink": "./photos/Decoration-reception/Decoration-reception.zip",
       "path": "./photos/Decoration-reception",
       "cover": "MariageKE_Decoration-reception_2.webp",
       "images": [
@@ -4493,7 +4492,7 @@
     {
       "id": "album6",
       "title": "Photos de couple",
-      "downloadLink": "#",
+      "downloadLink": "./photos/Photos-couple/Photos-couple.zip",
       "path": "./photos/Photos-couple",
       "cover": "MariageKE_Photos-couple_26.webp",
       "images": [
@@ -4923,7 +4922,7 @@
     {
       "id": "album7",
       "title": "Récéption",
-      "downloadLink": "#",
+      "downloadLink": "./photos/Reception/Reception.zip",
       "path": "./photos/Reception",
       "cover": "MariageKE_Reception_37.webp",
       "images": [
@@ -7254,10 +7253,10 @@
 
     {
       "id": "album8",
-      "title": "Vos photos",
-      "downloadLink": "#",
+      "title": "Wedshoots",
+      "downloadLink": "./photos/Vos-photos/Vos-photos.zip",
       "path": "./photos/Vos-photos",
-      "cover": "MariageKE_Vos-photos_329.webp",
+      "cover": "MariageKE_Vos-photos_157.webp",
       "images": [
         {
           "id": "WEDSHOOTS1",
@@ -9317,7 +9316,7 @@
     {
       "id": "album9",
       "title": "Palpic",
-      "downloadLink": "#",
+      "downloadLink": "./photos/Palpic/Palpic.zip",
       "path": "./photos/Palpic",
       "cover": "MariageKE_Palpic_4.webp",
       "images": [

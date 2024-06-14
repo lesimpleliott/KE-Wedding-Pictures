@@ -1,7 +1,8 @@
 export type AlbumType = {
   id: string;
   title: string;
-  cover: string;
+  downloadLink: string;
   path: string;
+  cover: string;
   images: Array<object>;
 };

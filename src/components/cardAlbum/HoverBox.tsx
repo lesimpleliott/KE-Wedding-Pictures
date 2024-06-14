@@ -1,16 +1,22 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const HoverBox = ({ imageCount }: { imageCount: number }) => {
+type HoverBoxProps = {
+  imageCount: number;
+  downloadLink: string;
+};
+
+const HoverBox = ({ imageCount, downloadLink }: HoverBoxProps) => {
   return (
     <HoverBoxstyled className="hoverBox">
       <div className="content">
         <div className="actions">
-          <button>
+          <NavLink to="/gallery">
             <i className="fa-solid fa-eye"></i>
-          </button>
-          <button>
+          </NavLink>
+          <a href={downloadLink} download>
             <i className="fa-solid fa-download"></i>
-          </button>
+          </a>
         </div>
         <p className="text">
           <i className="fa-regular fa-image"></i>
@@ -43,7 +49,8 @@ const HoverBoxstyled = styled.div`
       display: flex;
       gap: 0.5rem;
 
-      button {
+      button,
+      a {
         padding: 0.75rem;
         border-radius: 50%;
         display: flex;
