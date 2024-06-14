@@ -44,10 +44,10 @@ const transformPhotos = async (album: AlbumType): Promise<Photo[]> => {
   const transformedImages = await Promise.all(
     album.images.map(async (image) => {
       const { width, height } = await getImageDimensions(
-        `${album.path}/lowRes/${image.lowRes}`
+        `${album.path}/thumbnail/${image.lowRes}`
       );
       return {
-        src: `${album.path}/lowRes/${image.lowRes}`,
+        src: `${album.path}/thumbnail/${image.lowRes}`,
         width,
         height,
         alt: image.id,
