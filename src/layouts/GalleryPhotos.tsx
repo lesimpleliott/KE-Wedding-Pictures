@@ -1,8 +1,35 @@
 import { useEffect, useState } from "react";
-import PhotoAlbum from "react-photo-album";
+import PhotoAlbum, { Photo } from "react-photo-album";
 import data from "../assets/dataPhotos.json";
 
-const getImageDimensions = (src: string) => {
+// Types pour les albums et les images
+type ImageType = {
+  id: string;
+  author: string;
+  hd: string;
+  lowRes: string;
+};
+
+type AlbumType = {
+  id: string;
+  title: string;
+  downloadLink: string;
+  path: string;
+  cover: string;
+  images: ImageType[];
+};
+
+type AlbumDataType = {
+  albums: AlbumType[];
+};
+
+// Charger les données JSON
+const albumData: AlbumDataType = data;
+
+// Fonction pour obtenir les dimensions d'une image
+const getImageDimensions = (
+  src: string
+): Promise<{ width: number; height: number }> => {
   return new Promise((resolve) => {
     const img = new Image();
     img.onload = () => {
@@ -12,7 +39,8 @@ const getImageDimensions = (src: string) => {
   });
 };
 
-const transformPhotos = async (album) => {
+// Fonction pour transformer les photos d'un album
+const transformPhotos = async (album: AlbumType): Promise<Photo[]> => {
   const transformedImages = await Promise.all(
     album.images.map(async (image) => {
       const { width, height } = await getImageDimensions(
@@ -22,23 +50,29 @@ const transformPhotos = async (album) => {
         src: `${album.path}/lowRes/${image.lowRes}`,
         width,
         height,
-        alt: "agaiiiin",
-        title: image.lowRes,
+        alt: image.id,
+        title: image.author,
       };
     })
   );
   return transformedImages;
 };
 
-const albums = data.albums.map((album) => ({
+// Transformation des albums avec les photos
+const albums = albumData.albums.map((album) => ({
   id: album.id,
   title: album.title,
   photos: transformPhotos(album),
 }));
 
+// Composant PhotoGallery
 const PhotoGallery = () => {
-  const [currentAlbum, setCurrentAlbum] = useState(albums[0]);
-  const [photos, setPhotos] = useState([]);
+  const [currentAlbum, setCurrentAlbum] = useState<{
+    id: string;
+    title: string;
+    photos: Promise<Photo[]>;
+  }>(albums[0]);
+  const [photos, setPhotos] = useState<Photo[]>([]);
 
   useEffect(() => {
     const loadPhotos = async () => {
@@ -50,14 +84,13 @@ const PhotoGallery = () => {
 
   return (
     <div>
-      {/* <div className="album-selector">
+      <div className="album-selector">
         {albums.map((album) => (
           <button key={album.id} onClick={() => setCurrentAlbum(album)}>
             {album.title}
           </button>
         ))}
-      </div> */}
-
+      </div>
       <PhotoAlbum layout="rows" photos={photos} />
     </div>
   );
