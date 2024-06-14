@@ -1,0 +1,44 @@
+name: Generate a build and push to katelio.fr (main)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Push (main)
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: npm install
+
+      ## Optionnel: si variables d'environnement
+      # - name: Add environment variables
+      #   run: |
+      #     echo "VITE_SERVICE=${{ secrets.VITE_SERVICE }}" >> $GITHUB_ENV
+      #     echo "VITE_TEMPLATE=${{ secrets.VITE_TEMPLATE }}" >> $GITHUB_ENV
+      #     echo "VITE_ID=${{ secrets.VITE_ID }}" >> $GITHUB_ENV
+
+      - name: Build the project
+        run: npm run build
+
+      - name: List dist directory
+        run: ls -la dist
+
+      - name: Push to build branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: build # Le nom de la branche où tu veux pousser les assets
+          FOLDER: dist # Le répertoire où tes assets sont générés
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub l'ajoutera automatiquement - pas besoin de récupérer un token
+          MESSAGE: "Build: ({sha}) {msg}" # Le message de commit
