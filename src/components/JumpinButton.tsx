@@ -47,8 +47,8 @@ const JumpinButtonStyled = styled.a`
 
     &::before {
       content: "";
-      height: calc(var(--size) - 10px);
-      width: calc(var(--size) - 10px);
+      height: calc(var(--size) - 8px);
+      width: calc(var(--size) - 8px);
       position: absolute;
       z-index: -1;
       top: 50%;
