@@ -33,7 +33,7 @@ const HeroBannerStyled = styled.section`
     padding: 0.5rem;
     background-color: rgba(78, 78, 78, 0.3);
     position: absolute;
-    top: 33%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
