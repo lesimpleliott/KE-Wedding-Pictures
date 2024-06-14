@@ -5,12 +5,8 @@ import JumpinButton from "../components/JumpinButton";
 const HeroBanner = () => {
   return (
     <HeroBannerStyled>
-      <BackgroundImage />
+      <BackgroundImage img="./KE_mainCover.webp" />
       <div className="textBanner">
-        {/* <h1>
-          Katherine <strong>&</strong> Eliott
-        </h1>
-        <h2>18 mai 2024</h2> */}
         <img src="./logos/LogoKE_WhitePink_V2_RVB.svg" alt="" />
       </div>
       <JumpinButton

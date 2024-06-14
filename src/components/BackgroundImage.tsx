@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
-const BackgroundImage = ({ blur }: { blur?: boolean }) => {
+type BackgroundImageType = {
+  img: string;
+  blur?: boolean;
+};
+
+const BackgroundImage = ({ img, blur }: BackgroundImageType) => {
   return (
     <BackgroundImageStyled
-      src="./KE_mainCover.webp"
+      src={img}
       alt="Katherine & Eliott - Photo de couverture"
       className={blur ? "blur" : ""}
     />
