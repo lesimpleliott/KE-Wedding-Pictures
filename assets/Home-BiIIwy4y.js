@@ -1,4 +1,4 @@
-import{p as a,j as t,N as c,d,r as i}from"./index-Bxyo5PoG.js";import{B as m}from"./BackgroundImage-BwggRc9T.js";const p=({imageCount:e,downloadLink:n})=>t.jsx(f,{className:"hoverBox",children:t.jsxs("div",{className:"content",children:[t.jsxs("div",{className:"actions",children:[t.jsx(c,{to:"/gallery",children:t.jsx("i",{className:"fa-solid fa-eye"})}),t.jsx("a",{href:n,download:!0,children:t.jsx("i",{className:"fa-solid fa-download"})})]}),t.jsxs("p",{className:"text",children:[t.jsx("i",{className:"fa-regular fa-image"}),e," photos"]})]})}),f=a.div`
+import{p as a,j as t,N as c,d,r as i}from"./index-DgHyoYde.js";import{B as m}from"./BackgroundImage-DMlrCwmB.js";const p=({imageCount:e,downloadLink:n})=>t.jsx(f,{className:"hoverBox",children:t.jsxs("div",{className:"content",children:[t.jsxs("div",{className:"actions",children:[t.jsx(c,{to:"/gallery",children:t.jsx("i",{className:"fa-solid fa-eye"})}),t.jsx("a",{href:n,download:!0,children:t.jsx("i",{className:"fa-solid fa-download"})})]}),t.jsxs("p",{className:"text",children:[t.jsx("i",{className:"fa-regular fa-image"}),e," photos"]})]})}),f=a.div`
   position: absolute;
   inset: 0;
   display: flex;
