@@ -1,26 +1,33 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { AlbumType } from "../../types/albumType";
 
-type HoverBoxProps = {
-  imageCount: number;
-  downloadLink: string;
-};
-
-const HoverBox = ({ imageCount, downloadLink }: HoverBoxProps) => {
+const HoverBox = ({ album }: { album: AlbumType }) => {
   return (
     <HoverBoxstyled className="hoverBox">
       <div className="content">
         <div className="actions">
-          <NavLink to="/gallery">
+          <NavLink
+            to="/gallery"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <i className="fa-solid fa-eye"></i>
           </NavLink>
-          <a href={downloadLink} download>
+          <a
+            href={album.downloadLink}
+            download
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <i className="fa-solid fa-download"></i>
           </a>
         </div>
         <p className="text">
           <i className="fa-regular fa-image"></i>
-          {imageCount} photos
+          {album.images.length} photos
         </p>
       </div>
     </HoverBoxstyled>
@@ -28,8 +35,16 @@ const HoverBox = ({ imageCount, downloadLink }: HoverBoxProps) => {
 };
 
 const HoverBoxstyled = styled.div`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
   display: flex;
   align-items: flex-end;
   background: var(--hoverCardBackground);
@@ -37,9 +52,9 @@ const HoverBoxstyled = styled.div`
   transition: opacity 400ms ease-in;
 
   .content {
-    height: 65%;
+    height: 70%;
     width: 100%;
-    padding: 1rem;
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
