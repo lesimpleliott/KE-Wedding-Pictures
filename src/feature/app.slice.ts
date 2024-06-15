@@ -2,12 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type AppStateType = {
   menuIsOpen: boolean;
-  isConnected: boolean;
+  password: string;
 };
 
+const savedPassword = sessionStorage.getItem("password");
 const initialState: AppStateType = {
   menuIsOpen: false,
-  isConnected: false,
+  password: savedPassword ? savedPassword : "",
 };
 
 export const appSlice = createSlice({
@@ -17,11 +18,11 @@ export const appSlice = createSlice({
     setMenuIsOpen: (state, { payload }: PayloadAction<boolean>) => {
       state.menuIsOpen = payload;
     },
-    setIsConnected: (state, { payload }: PayloadAction<boolean>) => {
-      state.isConnected = payload;
+    setPassword: (state, { payload }: PayloadAction<string>) => {
+      state.password = payload;
     },
   },
 });
 
-export const { setMenuIsOpen, setIsConnected } = appSlice.actions;
+export const { setMenuIsOpen, setPassword } = appSlice.actions;
 export default appSlice.reducer;

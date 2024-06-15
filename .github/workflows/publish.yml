@@ -21,12 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      ## Optionnel: si variables d'environnement
-      # - name: Add environment variables
-      #   run: |
-      #     echo "VITE_SERVICE=${{ secrets.VITE_SERVICE }}" >> $GITHUB_ENV
-      #     echo "VITE_TEMPLATE=${{ secrets.VITE_TEMPLATE }}" >> $GITHUB_ENV
-      #     echo "VITE_ID=${{ secrets.VITE_ID }}" >> $GITHUB_ENV
+      # Optionnel: si variables d'environnement
+      - name: Add environment variables
+        run: |
+          echo "VITE_KATELIOSECRET=${{ secrets.VITE_KATELIOSECRET }}" >> $GITHUB_ENV
 
       - name: Build the project
         run: npm run build

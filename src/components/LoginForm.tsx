@@ -1,8 +1,11 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { setPassword } from "../feature/app.slice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleVisibility = () => {
     const pwdInput = document.getElementById("pwdInput") as HTMLInputElement;
@@ -20,28 +23,35 @@ const LoginForm = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // FONCTION PROVISOIRE  / A MODIFIER
     e.preventDefault();
     const pwdInput = document.getElementById("pwdInput") as HTMLInputElement;
+    const loginForm = document.getElementById("loginForm") as HTMLFormElement;
 
-    if (pwdInput.value === "katelio") {
+    if (pwdInput.value === import.meta.env.VITE_KATELIOSECRET) {
+      dispatch(setPassword(pwdInput.value));
+      sessionStorage.setItem("password", pwdInput.value);
       navigate("/home");
     } else {
       pwdInput.value = "";
       pwdInput.placeholder = "Mot de passe incorrect";
+      loginForm.classList.add("error");
+      setTimeout(() => {
+        pwdInput.placeholder = "Mot de passe";
+        loginForm.classList.remove("error");
+      }, 1000);
     }
   };
 
   return (
-    <LoginFormStyled onSubmit={handleSubmit}>
+    <LoginFormStyled onSubmit={handleSubmit} id="loginForm">
       <input type="password" id="pwdInput" placeholder="Mot de passe" />
       <button
         type="button"
         value="hidden"
-        id="toggleVisibilityBtn"
+        id="visibleIcon"
         onClick={toggleVisibility}
       >
-        <i className="fa-solid fa-eye" id="visibleIcon"></i>
+        <i className="fa-solid fa-eye"></i>
       </button>
       <button type="submit" id="passwordSubmit">
         <i className="fa-regular fa-paper-plane"></i>
@@ -53,6 +63,9 @@ const LoginForm = () => {
 //styled component
 const LoginFormStyled = styled.form`
   position: relative;
+  &.error {
+    animation: shake 250ms ease-in-out;
+  }
 
   input {
     height: 35px;
@@ -70,19 +83,32 @@ const LoginFormStyled = styled.form`
     }
   }
 
-  #toggleVisibilityBtn,
+  #visibleIcon,
   #passwordSubmit {
     height: 100%;
     position: absolute;
     user-select: none;
   }
-  #toggleVisibilityBtn {
-    color: var(--mainColor-light);
+  #visibleIcon {
     left: 10px;
+    i {
+      color: var(--mainColor-light);
+      transition: color 250ms;
+      &:hover {
+        color: var(--mainColor);
+      }
+    }
   }
   #passwordSubmit {
     color: var(--secondColor);
     right: 10px;
+    i {
+      color: var(--secondColor-light);
+      transition: color 250ms;
+      &:hover {
+        color: var(--secondColor);
+      }
+    }
   }
 `;
 

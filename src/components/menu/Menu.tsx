@@ -39,6 +39,7 @@ const Menu: React.FC = () => {
               to={`/gallery`}
               className="secondLink"
               onClick={handleClick}
+              key={album.id}
             >
               {album.title}
             </NavLink>
