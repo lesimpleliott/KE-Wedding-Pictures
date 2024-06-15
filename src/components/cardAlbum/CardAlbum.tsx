@@ -8,8 +8,8 @@ const CardAlbum = ({ album }: { album: AlbumType }) => {
     <CardAlbumStyled>
       <NavLink to={`/gallery`} className="imageWrapper">
         <img
-          className="cover"
-          src={`${album.path}/lowRes/${album.cover}`}
+          className="preview"
+          src={`${album.path}/lowRes/${album.preview}`}
           alt={`Photos de l'album ${album.title}`}
         />
       </NavLink>
@@ -48,7 +48,7 @@ const CardAlbumStyled = styled.article`
     overflow: hidden;
     border-radius: 5px;
 
-    .cover {
+    .preview {
       width: 100%;
       height: 100%;
       object-fit: cover;
