@@ -58,7 +58,7 @@ const HoverBoxstyled = styled.div`
         justify-content: center;
 
         i {
-          font-size: 3rem;
+          font-size: 2.5rem;
           color: var(--mainColor-opacity);
           transition: color 250ms ease-in;
         }
@@ -74,6 +74,11 @@ const HoverBoxstyled = styled.div`
       display: flex;
       gap: 0.5rem;
       align-items: center;
+      font-size: 0.9rem;
+      font-style: italic;
+      i {
+        color: var(--mainColor);
+      }
     }
   }
 `;

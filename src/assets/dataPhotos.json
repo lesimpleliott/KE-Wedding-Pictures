@@ -2860,7 +2860,7 @@
     {
       "id": "album3",
       "title": "Photos de groupes",
-      "downloadLink": "./photos/Photos-groupe/Photos-groupe.zip",
+      "downloadLink": "./photos/Photos-groupes/Photos-groupes.zip",
       "path": "./photos/Photos-groupes",
       "cover": "MariageKE_Photos-groupes_35.webp",
       "images": [
