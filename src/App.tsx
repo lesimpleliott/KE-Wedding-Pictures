@@ -5,7 +5,7 @@ import BurgerButton from "./components/menu/BurgerButton";
 import Menu from "./components/menu/Menu";
 import { RootState } from "./store";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
-const GalleryPhotos = lazy(() => import("./layouts/GalleryPhotos"));
+const Gallery = lazy(() => import("./pages/Gallery"));
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 
@@ -30,7 +30,7 @@ const App = () => {
 
           <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
-            <Route path="/gallery" element={<GalleryPhotos />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Route>
 
           {/* Si le mot de passe est incorrect, affiche la page de connexion */}

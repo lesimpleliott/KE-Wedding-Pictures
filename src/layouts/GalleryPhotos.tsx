@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PhotoAlbum, { Photo } from "react-photo-album";
+import styled from "styled-components";
 import data from "../assets/dataPhotos.json";
 
 // Types pour les albums et les images
@@ -65,9 +66,9 @@ const albums = albumData.albums.map((album) => ({
   photos: transformPhotos(album),
 }));
 
-// Composant PhotoGallery
-const PhotoGallery = () => {
-  const [currentAlbum, setCurrentAlbum] = useState<{
+// Composant GalleryPhotos
+const GalleryPhotos = () => {
+  const [currentAlbum /*, setCurrentAlbum*/] = useState<{
     id: string;
     title: string;
     photos: Promise<Photo[]>;
@@ -83,17 +84,23 @@ const PhotoGallery = () => {
   }, [currentAlbum]);
 
   return (
-    <div>
-      <div className="album-selector">
+    <GalleryPhotosStyled>
+      {/* <div className="album-selector">
         {albums.map((album) => (
           <button key={album.id} onClick={() => setCurrentAlbum(album)}>
-            {album.title}
+          {album.title}
           </button>
-        ))}
-      </div>
-      <PhotoAlbum layout="rows" photos={photos} />
-    </div>
+          ))}
+          </div> */}
+      <PhotoAlbum layout="masonry" photos={photos} />
+    </GalleryPhotosStyled>
   );
 };
 
-export default PhotoGallery;
+const GalleryPhotosStyled = styled.section`
+  width: 100%;
+  max-width: calc(1260px + (2 * 5vw));
+  padding-inline: 5vw;
+`;
+
+export default GalleryPhotos;
