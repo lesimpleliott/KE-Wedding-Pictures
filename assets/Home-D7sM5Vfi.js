@@ -1,6 +1,14 @@
-import{p as a,j as t,N as c,d,r as i}from"./index-DgHyoYde.js";import{B as m}from"./BackgroundImage-DMlrCwmB.js";const p=({imageCount:e,downloadLink:n})=>t.jsx(f,{className:"hoverBox",children:t.jsxs("div",{className:"content",children:[t.jsxs("div",{className:"actions",children:[t.jsx(c,{to:"/gallery",children:t.jsx("i",{className:"fa-solid fa-eye"})}),t.jsx("a",{href:n,download:!0,children:t.jsx("i",{className:"fa-solid fa-download"})})]}),t.jsxs("p",{className:"text",children:[t.jsx("i",{className:"fa-regular fa-image"}),e," photos"]})]})}),f=a.div`
+import{p as a,j as e,N as s,d,r as n}from"./index-K0HcDb5Z.js";import{B as m}from"./BackgroundImage-BkADFRte.js";const p=({album:t})=>e.jsx(x,{className:"hoverBox",children:e.jsxs("div",{className:"content",children:[e.jsxs("div",{className:"actions",children:[e.jsx(s,{to:"/gallery",onClick:i=>{i.stopPropagation()},children:e.jsx("i",{className:"fa-solid fa-eye"})}),e.jsx("a",{href:t.downloadLink,download:!0,onClick:i=>{i.stopPropagation()},children:e.jsx("i",{className:"fa-solid fa-download"})})]}),e.jsxs("p",{className:"text",children:[e.jsx("i",{className:"fa-regular fa-image"}),t.images.length," photos"]})]})}),x=a.div`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
   display: flex;
   align-items: flex-end;
   background: var(--hoverCardBackground);
@@ -8,9 +16,9 @@ import{p as a,j as t,N as c,d,r as i}from"./index-DgHyoYde.js";import{B as m}fro
   transition: opacity 400ms ease-in;
 
   .content {
-    height: 65%;
+    height: 70%;
     width: 100%;
-    padding: 1rem;
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -52,49 +60,51 @@ import{p as a,j as t,N as c,d,r as i}from"./index-DgHyoYde.js";import{B as m}fro
       }
     }
   }
-`,x=({album:e})=>t.jsxs(g,{children:[t.jsxs("div",{className:"imageWrapper",children:[t.jsx("img",{className:"cover",src:`${e.path}/lowRes/${e.cover}`,alt:`Photos de l'album ${e.title}`}),t.jsx(p,{imageCount:e.images.length,downloadLink:e.downloadLink})]}),t.jsx("h2",{className:"title",children:e.title})]}),g=a.article`
+`,f=({album:t})=>e.jsxs(g,{children:[e.jsx(s,{to:"/gallery",className:"imageWrapper",children:e.jsx("img",{className:"preview",src:`${t.path}/lowRes/${t.preview}`,alt:`Photos de l'album ${t.title}`})}),e.jsx(p,{album:t}),e.jsx("h2",{className:"title",children:t.title})]}),g=a.article`
   display: flex;
   flex-direction: column;
+  position: relative;
 
-  .imageWrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    border-radius: 10px;
-
-    .cover {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
+  @media screen and (min-width: 768px) {
     &:hover {
       .hoverBox {
         opacity: 1;
         transition: opacity 400ms ease-out;
       }
-
-      & + .title {
+      & .title {
         font-weight: 600;
         letter-spacing: 0.2em;
         transition: letter-spacing 400ms ease-out, font-weight 400ms ease-out;
+        z-index: 2;
       }
+    }
+  }
+  .imageWrapper {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 5px;
+
+    .preview {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
   .title {
     font-size: 1rem;
+    font-weight: 500;
     height: fit-content;
     padding-top: 0.5rem;
     text-align: center;
     transition: letter-spacing 400ms ease-out, font-weight 400ms ease-out;
   }
-`,u=()=>t.jsx(h,{id:"albumsContainer",children:d.albums.map(e=>t.jsx(x,{album:e},e.id))}),h=a.section`
+`,u=()=>e.jsx(h,{id:"albumsContainer",children:d.albums.map(t=>e.jsx(f,{album:t},t.id))}),h=a.section`
   width: 100%;
   max-width: calc(1260px + 5vw);
   padding-block: clamp(2vw, 40px, 5vw);
@@ -104,7 +114,7 @@ import{p as a,j as t,N as c,d,r as i}from"./index-DgHyoYde.js";import{B as m}fro
   grid-auto-rows: 350px;
   column-gap: 2vw;
   row-gap: clamp(2vw, 20px, 5vw);
-`,v=({linky:e,className:n})=>{const[s,r]=i.useState(!1);return i.useEffect(()=>{const o=setInterval(()=>{r(l=>!l)},4e3);return()=>clearInterval(o)},[]),t.jsx(b,{href:e,children:t.jsx("span",{className:`btn ${s?"jumpButton":""}`,children:t.jsx("i",{className:`icon ${n}`})})})},b=a.a`
+`,v=({linky:t,className:i})=>{const[r,o]=n.useState(!1);return n.useEffect(()=>{const l=setInterval(()=>{o(c=>!c)},4e3);return()=>clearInterval(l)},[]),e.jsx(w,{href:t,children:e.jsx("span",{className:`btn ${r?"jumpButton":""}`,children:e.jsx("i",{className:`icon ${i}`})})})},w=a.a`
   --size: 70px;
   --arrowsize: 1.7rem;
 
@@ -197,7 +207,7 @@ import{p as a,j as t,N as c,d,r as i}from"./index-DgHyoYde.js";import{B as m}fro
       transform: translateY(0) scale(1, 1);
     }
   }
-`,j=()=>t.jsxs(w,{children:[t.jsx(m,{img:"./KE_mainCover.webp"}),t.jsx("div",{className:"banner",children:t.jsx("img",{src:"./logos/LogoKE_WhitePink_V2_RVB.svg",alt:""})}),t.jsx(v,{linky:"#albumsContainer",className:"fa-solid fa-angles-down"})]}),w=a.section`
+`,b=()=>e.jsxs(j,{children:[e.jsx(m,{img:"./KE_mainCover.webp"}),e.jsx("div",{className:"banner",children:e.jsx("img",{src:"./logos/LogoKE_WhitePink_V2_RVB.svg",alt:""})}),e.jsx(v,{linky:"#albumsContainer",className:"fa-solid fa-angles-down"})]}),j=a.section`
   width: 100%;
   height: 100vh;
   position: relative;
@@ -211,7 +221,7 @@ import{p as a,j as t,N as c,d,r as i}from"./index-DgHyoYde.js";import{B as m}fro
   .banner {
     width: 100%;
     padding: 0.5rem;
-    background-color: rgba(78, 78, 78, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     top: 35%;
     left: 50%;
@@ -226,26 +236,5 @@ import{p as a,j as t,N as c,d,r as i}from"./index-DgHyoYde.js";import{B as m}fro
       min-width: 250px;
       max-height: 300px;
     }
-
-    h1 {
-      font-size: 3rem;
-      color: #fff;
-
-      &::after {
-        content: "";
-        display: block;
-        width: 100px;
-        height: 2px;
-        background-color: #fff;
-        margin: 0 auto;
-      }
-    }
-
-    h2 {
-      margin-top: 8px;
-      font-size: 2rem;
-      color: #fff;
-      font-weight: 400;
-    }
   }
-`,B=()=>t.jsxs(y,{children:[t.jsx(j,{}),t.jsx(u,{})]}),y=a.main``;export{B as default};
+`,N=()=>e.jsxs(y,{children:[e.jsx(b,{}),e.jsx(u,{})]}),y=a.main``;export{N as default};
