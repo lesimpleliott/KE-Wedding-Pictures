@@ -8,7 +8,7 @@ const HoverBox = ({ album }: { album: AlbumType }) => {
       <div className="content">
         <div className="actions">
           <NavLink
-            to="/gallery"
+            to={`/gallery/${album.id}`}
             onClick={(e) => {
               e.stopPropagation();
             }}

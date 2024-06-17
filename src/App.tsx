@@ -31,7 +31,7 @@ const App = () => {
 
           <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/gallery/:idAlbum" element={<Gallery />} />
             <Route path="/Slider" element={<Slider />} />
           </Route>
 

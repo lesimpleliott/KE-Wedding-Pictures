@@ -6,10 +6,10 @@ import HoverBox from "./HoverBox";
 const CardAlbum = ({ album }: { album: AlbumType }) => {
   return (
     <CardAlbumStyled>
-      <NavLink to={`/gallery`} className="imageWrapper">
+      <NavLink to={`/gallery/${album.id}`} className="imageWrapper">
         <img
           className="preview"
-          src={`${album.path}/lowRes/${album.preview}`}
+          src={`${album.path}/lowRes/${album.preview}.webp`}
           alt={`Photos de l'album ${album.title}`}
         />
       </NavLink>

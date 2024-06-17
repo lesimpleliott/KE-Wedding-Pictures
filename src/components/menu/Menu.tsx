@@ -36,7 +36,7 @@ const Menu: React.FC = () => {
         <div>
           {dataPhotos.albums.map((album) => (
             <NavLink
-              to={`/gallery`}
+              to={`/gallery/${album.id}`}
               className="secondLink"
               onClick={handleClick}
               key={album.id}

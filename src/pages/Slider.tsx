@@ -9,14 +9,10 @@ const Slider = () => {
   const album = dataTest.albums[6];
   const photos = album.images;
 
-  function extractNumber(fileName: string) {
-    const regex = /_(\d+)\.webp$/;
-    const match = fileName.match(regex);
-    if (match) {
-      return `(${match[1]})`;
-    } else {
-      return "";
-    }
+  function extractNumber(name: string) {
+    const regex = /_(\d+)\b/;
+    const match = name.match(regex);
+    return match ? `(${match[1]})` : "";
   }
 
   return (
@@ -38,19 +34,19 @@ const Slider = () => {
         scrollbar={{ draggable: true }}
         rewind={true}
         loop={true}
-        initialSlide={100}
+        initialSlide={0}
         // onSwiper={(swiper) => console.log(swiper)}
         // onSlideChange={() => console.log("slide change")}
       >
         {photos.map((image, index) => (
           <SwiperSlide key={index}>
             <img
-              src={`${album.path}/lowRes/${image.lowRes}`}
+              src={`${album.path}/lowRes/${image.name}.webp`}
               alt={`Image ${index}`}
               className="myImage"
             />
             <p className="imgTitle">
-              {image.author} - {album.title} {extractNumber(image.lowRes)}
+              {image.author} - {album.title} {extractNumber(image.name)}
             </p>
           </SwiperSlide>
         ))}
