@@ -1,7 +1,7 @@
 {
   "albums": [
     {
-      "id": "album1",
+      "id": "ceremonie-civile",
       "title": "Cérémonie Civile",
       "downloadLink": "./photos/Ceremonie-civile/Ceremonie-civile.zip",
       "path": "./photos/Ceremonie-civile",
@@ -1145,7 +1145,7 @@
       ]
     },
     {
-      "id": "album2",
+      "id": "ceremonie-laique",
       "title": "Cérémonie Laïque",
       "downloadLink": "./photos/Ceremonie-laique/Ceremonie-laique.zip",
       "path": "./photos/Ceremonie-laique",
@@ -2860,7 +2860,7 @@
     },
 
     {
-      "id": "album3",
+      "id": "photos-groupes",
       "title": "Photos de groupes",
       "downloadLink": "./photos/Photos-groupes/Photos-groupes.zip",
       "path": "./photos/Photos-groupes",
@@ -3081,7 +3081,7 @@
     },
 
     {
-      "id": "album4",
+      "id": "cocktail",
       "title": "Cocktail",
       "downloadLink": "./photos/Cocktail/Cocktail.zip",
       "path": "./photos/Cocktail",
@@ -4064,7 +4064,7 @@
     },
 
     {
-      "id": "album5",
+      "id": "decoration",
       "title": "Décoration Diner",
       "downloadLink": "./photos/Decoration-reception/Decoration-reception.zip",
       "path": "./photos/Decoration-reception",
@@ -4495,7 +4495,7 @@
     },
 
     {
-      "id": "album6",
+      "id": "photos-couple",
       "title": "Photos de couple",
       "downloadLink": "./photos/Photos-couple/Photos-couple.zip",
       "path": "./photos/Photos-couple",
@@ -4926,7 +4926,7 @@
     },
 
     {
-      "id": "album7",
+      "id": "reception",
       "title": "Récéption",
       "downloadLink": "./photos/Reception/Reception.zip",
       "path": "./photos/Reception",
@@ -7259,7 +7259,7 @@
     },
 
     {
-      "id": "album8",
+      "id": "wedshoots",
       "title": "Wedshoots",
       "downloadLink": "./photos/Vos-photos/Vos-photos.zip",
       "path": "./photos/Vos-photos",
@@ -9322,7 +9322,7 @@
     },
 
     {
-      "id": "album9",
+      "id": "palpic",
       "title": "Palpic",
       "downloadLink": "./photos/Palpic/Palpic.zip",
       "path": "./photos/Palpic",
