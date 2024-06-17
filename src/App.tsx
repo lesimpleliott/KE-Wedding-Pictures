@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import BurgerButton from "./components/menu/BurgerButton";
 import Menu from "./components/menu/Menu";
+import Slider from "./pages/Slider";
 import { RootState } from "./store";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 const Gallery = lazy(() => import("./pages/Gallery"));
@@ -31,6 +32,7 @@ const App = () => {
           <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/Slider" element={<Slider />} />
           </Route>
 
           {/* Si le mot de passe est incorrect, affiche la page de connexion */}
