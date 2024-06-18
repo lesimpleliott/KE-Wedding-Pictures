@@ -4,6 +4,7 @@ import "swiper/css/scrollbar";
 import { Autoplay, Keyboard, Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import dataTest from "../assets/dataPhotos.json";
+import TipBoxSlider from "../layouts/TipBoxSlider";
 
 const Slider = () => {
   const album = dataTest.albums[6];
@@ -51,6 +52,7 @@ const Slider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <TipBoxSlider />
     </SliderStyled>
   );
 };
