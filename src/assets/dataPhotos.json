@@ -4,7 +4,7 @@
       "id": "ceremonie-civile",
       "title": "Cérémonie Civile",
       "downloadLink": "./photos/Ceremonie-civile/Ceremonie-civile.zip",
-      "path": "./photos/Ceremonie-civile",
+      "path": "/photos/Ceremonie-civile",
       "preview": "MariageKE_Ceremonie-civile_54",
       "cover": "MariageKE_Ceremonie-civile_54",
       "images": [
@@ -959,7 +959,7 @@
       "id": "ceremonie-laique",
       "title": "Cérémonie Laïque",
       "downloadLink": "./photos/Ceremonie-laique/Ceremonie-laique.zip",
-      "path": "./photos/Ceremonie-laique",
+      "path": "/photos/Ceremonie-laique",
       "preview": "MariageKE_Ceremonie-laique_11",
       "cover": "MariageKE_Ceremonie-laique_11",
       "images": [
@@ -2390,7 +2390,7 @@
       "id": "photos-groupes",
       "title": "Photos de groupes",
       "downloadLink": "./photos/Photos-groupes/Photos-groupes.zip",
-      "path": "./photos/Photos-groupes",
+      "path": "/photos/Photos-groupes",
       "preview": "MariageKE_Photos-groupes_35",
       "cover": "MariageKE_Photos-groupes_35",
       "images": [
@@ -2576,7 +2576,7 @@
       "id": "cocktail",
       "title": "Cocktail",
       "downloadLink": "./photos/Cocktail/Cocktail.zip",
-      "path": "./photos/Cocktail",
+      "path": "/photos/Cocktail",
       "preview": "MariageKE_Cocktail_46",
       "cover": "MariageKE_Cocktail_46",
       "images": [
@@ -3397,7 +3397,7 @@
       "id": "decoration",
       "title": "Décoration Diner",
       "downloadLink": "./photos/Decoration-reception/Decoration-reception.zip",
-      "path": "./photos/Decoration-reception",
+      "path": "/photos/Decoration-reception",
       "preview": "MariageKE_Decoration-reception_2",
       "cover": "MariageKE_Decoration-reception_2",
       "images": [
@@ -3758,7 +3758,7 @@
       "id": "photos-couple",
       "title": "Photos de couple",
       "downloadLink": "./photos/Photos-couple/Photos-couple.zip",
-      "path": "./photos/Photos-couple",
+      "path": "/photos/Photos-couple",
       "preview": "MariageKE_Photos-couple_26",
       "cover": "MariageKE_Photos-couple_26",
       "images": [
@@ -4119,7 +4119,7 @@
       "id": "reception",
       "title": "Récéption",
       "downloadLink": "./photos/Reception/Reception.zip",
-      "path": "./photos/Reception",
+      "path": "/photos/Reception",
       "preview": "MariageKE_Reception_37",
       "cover": "MariageKE_Reception_37",
       "images": [
@@ -6065,7 +6065,7 @@
       "id": "wedshoots",
       "title": "Wedshoots",
       "downloadLink": "./photos/Vos-photos/Vos-photos.zip",
-      "path": "./photos/Vos-photos",
+      "path": "/photos/Vos-photos",
       "preview": "MariageKE_Vos-photos_157",
       "cover": "MariageKE_Vos-photos_157",
       "images": [
@@ -7786,7 +7786,7 @@
       "id": "palpic",
       "title": "Palpic",
       "downloadLink": "./photos/Palpic/Palpic.zip",
-      "path": "./photos/Palpic",
+      "path": "/photos/Palpic",
       "preview": "MariageKE_Palpic_4",
       "cover": "MariageKE_Palpic_4",
       "images": [
