@@ -1,8 +1,10 @@
 import { Suspense, useCallback, useEffect, useState } from "react";
 import PhotoAlbum, { Photo as PhotoAlbumPhoto } from "react-photo-album";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Loader from "../components/Loader";
+import { setSelectedPicture } from "../feature/app.slice";
 import { ImageType } from "../types/imageType";
 
 type GalleryPhotosProps = {
@@ -17,6 +19,7 @@ const GalleryPhotos = ({ path, photos }: GalleryPhotosProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const idAlbum = useParams<{ idAlbum: string }>().idAlbum;
+  const dispatch = useDispatch();
 
   // Fonction pour obtenir les dimensions des images
   const getImageDimensions = (
@@ -74,8 +77,13 @@ const GalleryPhotos = ({ path, photos }: GalleryPhotosProps) => {
               if (containerWidth < 768) return 2;
               return 4;
             }}
+            // onClick={({ index }) => {
+            //   navigate(`/slider/${idAlbum}`);
+            //  console.log(index)
+            // }}
             onClick={({ index }) => {
-              navigate(`/slider/${idAlbum}/${index}`);
+              navigate(`/slider/${idAlbum}`);
+              dispatch(setSelectedPicture(index));
             }}
           />
         )}
@@ -88,6 +96,13 @@ const GalleryPhotosStyled = styled.section`
   width: 100%;
   max-width: calc(1260px + (2 * 5vw));
   padding-inline: 5vw;
+
+  .react-photo-album--photo {
+    &:hover {
+      transform: scale(1.02);
+      transition: transform 150ms ease-in-out;
+    }
+  }
 `;
 
 export default GalleryPhotos;

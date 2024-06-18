@@ -3,12 +3,20 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import { Autoplay, Keyboard, Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import dataTest from "../assets/dataPhotos.json";
+// import dataTest from "../assets/dataPhotos.json";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import dataPhotos from "../assets/dataPhotos.json";
 import TipBoxSlider from "../layouts/TipBoxSlider";
+import { RootState } from "../store";
 
 const Slider = () => {
-  const album = dataTest.albums[6];
-  const photos = album.images;
+  const { idAlbum } = useParams<{ idAlbum: string }>();
+  const album = dataPhotos.albums.find((album) => album.id === idAlbum);
+  const photos = album ? album.images : [];
+  const selectedPicture = useSelector(
+    (state: RootState) => state.app.selectedPicture
+  );
 
   function extractNumber(name: string) {
     const regex = /_(\d+)\b/;
@@ -17,43 +25,44 @@ const Slider = () => {
   }
 
   return (
-    <SliderStyled className="carousel">
-      <button className="navButton prev">
-        <i className="fa-solid fa-chevron-left"></i>
-      </button>
-      <button className="navButton next">
-        <i className="fa-solid fa-chevron-right"></i>
-      </button>
-      <Swiper
-        className="mySwiper"
-        modules={[Keyboard, Navigation, Scrollbar, Autoplay]}
-        navigation={{
-          prevEl: ".prev",
-          nextEl: ".next",
-        }}
-        keyboard={{ enabled: true }}
-        scrollbar={{ draggable: true }}
-        rewind={true}
-        loop={true}
-        initialSlide={0}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log("slide change")}
-      >
-        {photos.map((image, index) => (
-          <SwiperSlide key={index}>
-            <img
-              src={`${album.path}/lowRes/${image.name}.webp`}
-              alt={`Image ${index}`}
-              className="myImage"
-            />
-            <p className="imgTitle">
-              {image.author} - {album.title} {extractNumber(image.name)}
-            </p>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <TipBoxSlider />
-    </SliderStyled>
+    album &&
+    photos.length > 0 && (
+      <SliderStyled className="carousel">
+        <button className="navButton prev">
+          <i className="fa-solid fa-chevron-left"></i>
+        </button>
+        <button className="navButton next">
+          <i className="fa-solid fa-chevron-right"></i>
+        </button>
+        <Swiper
+          className="mySwiper"
+          modules={[Keyboard, Navigation, Scrollbar, Autoplay]}
+          navigation={{
+            prevEl: ".prev",
+            nextEl: ".next",
+          }}
+          keyboard={{ enabled: true }}
+          scrollbar={{ draggable: true }}
+          rewind={true}
+          loop={true}
+          initialSlide={selectedPicture}
+        >
+          {photos.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={`${album.path}/lowRes/${image.name}.webp`}
+                alt={`Image ${index}`}
+                className="myImage"
+              />
+              <p className="imgTitle">
+                {image.author} - {album.title} {extractNumber(image.name)}
+              </p>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <TipBoxSlider />
+      </SliderStyled>
+    )
   );
 };
 
@@ -89,10 +98,10 @@ const SliderStyled = styled.section`
     }
 
     &.prev {
-      left: 10px;
+      left: 2vw;
     }
     &.next {
-      right: 10px;
+      right: 2vw;
     }
 
     &:hover {

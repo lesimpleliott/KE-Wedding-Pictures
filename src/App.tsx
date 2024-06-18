@@ -29,7 +29,7 @@ const App = () => {
           <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
             <Route path="/gallery/:idAlbum" element={<Gallery />} />
-            <Route path="/Slider" element={<Slider />} />
+            <Route path="/Slider/:idAlbum" element={<Slider />} />
           </Route>
 
           {/* Si le mot de passe est incorrect, affiche la page de connexion */}
