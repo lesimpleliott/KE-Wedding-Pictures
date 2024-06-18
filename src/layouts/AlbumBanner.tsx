@@ -36,6 +36,7 @@ const AlbumBannerStyled = styled.section`
     line-height: 0.9;
     color: var(--contrast);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    user-select: none;
   }
 
   img {
