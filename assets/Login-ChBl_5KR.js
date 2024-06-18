@@ -1,4 +1,4 @@
-import{p as i,a as d,b as c,j as o,s as p}from"./index-D9VNWUm-.js";import{B as m}from"./BackgroundImage-CQ3K4IUa.js";const u=()=>{const a=d(),n=c(),r=()=>{const t=document.getElementById("pwdInput"),e=document.getElementById("visibleIcon");t.type==="password"?(t.type="text",e.classList.remove("fa-eye-slash"),e.classList.add("fa-eye")):(t.type="password",e.classList.remove("fa-eye"),e.classList.add("fa-eye-slash"))},l=t=>{t.preventDefault();const e=document.getElementById("pwdInput"),s=document.getElementById("loginForm");e.value==="toujoursplus"?(n(p(e.value)),sessionStorage.setItem("password",e.value),a("/home")):(e.value="",e.placeholder="Mot de passe incorrect",s.classList.add("error"),setTimeout(()=>{e.placeholder="Mot de passe",s.classList.remove("error")},1e3))};return o.jsxs(g,{onSubmit:l,id:"loginForm",children:[o.jsx("input",{type:"password",id:"pwdInput",placeholder:"Mot de passe"}),o.jsx("button",{type:"button",value:"hidden",id:"visibleIcon",onClick:r,children:o.jsx("i",{className:"fa-solid fa-eye"})}),o.jsx("button",{type:"submit",id:"passwordSubmit",children:o.jsx("i",{className:"fa-regular fa-paper-plane"})})]})},g=i.form`
+import{p as i,u as d,b as c,j as o,e as p}from"./index-Vm2KpXsz.js";import{B as m}from"./BackgroundImage-C1X0jReW.js";const u=()=>{const a=d(),r=c(),n=()=>{const t=document.getElementById("pwdInput"),e=document.querySelector("#visibleIcon i");t.type==="password"?(t.type="text",e.classList.remove("fa-eye-slash"),e.classList.add("fa-eye")):(t.type="password",e.classList.remove("fa-eye"),e.classList.add("fa-eye-slash"))},l=t=>{t.preventDefault();const e=document.getElementById("pwdInput"),s=document.getElementById("loginForm");e.value==="toujoursplus"?(r(p(e.value)),sessionStorage.setItem("password",e.value),a("/home")):(e.value="",e.placeholder="Mot de passe incorrect",s.classList.add("error"),setTimeout(()=>{e.placeholder="Mot de passe",s.classList.remove("error")},1e3))};return o.jsxs(g,{onSubmit:l,id:"loginForm",children:[o.jsx("input",{type:"password",id:"pwdInput",placeholder:"Mot de passe"}),o.jsx("button",{type:"button",value:"hidden",id:"visibleIcon",onClick:n,children:o.jsx("i",{className:"fa-solid fa-eye"})}),o.jsx("button",{type:"submit",id:"passwordSubmit",children:o.jsx("i",{className:"fa-regular fa-paper-plane"})})]})},g=i.form`
   position: relative;
   &.error {
     animation: shake 250ms ease-in-out;
@@ -41,7 +41,7 @@ import{p as i,a as d,b as c,j as o,s as p}from"./index-D9VNWUm-.js";import{B as 
     right: 10px;
     i {
       color: var(--secondColor-light);
-      transition: color 250ms;
+      transition: color 250ms ease-in-out;
       &:hover {
         color: var(--secondColor);
       }

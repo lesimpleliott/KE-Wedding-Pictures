@@ -1,4 +1,4 @@
-import{p as o,j as r}from"./index-D9VNWUm-.js";const i=({img:t,blur:e})=>r.jsx(s,{src:t,alt:"Katherine & Eliott - Photo de couverture",className:e?"blur":""}),s=o.img`
+import{p as o,j as r}from"./index-Vm2KpXsz.js";const i=({img:t,blur:e})=>r.jsx(s,{src:t,alt:"Katherine & Eliott - Photo de couverture",className:e?"blur":""}),s=o.img`
   width: 102%;
   height: 102%;
   position: absolute;
