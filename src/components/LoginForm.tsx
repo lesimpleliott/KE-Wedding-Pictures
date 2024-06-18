@@ -9,7 +9,7 @@ const LoginForm = () => {
 
   const toggleVisibility = () => {
     const pwdInput = document.getElementById("pwdInput") as HTMLInputElement;
-    const visibleIcon = document.getElementById("visibleIcon") as HTMLElement;
+    const visibleIcon = document.querySelector("#visibleIcon i") as HTMLElement;
 
     if (pwdInput.type === "password") {
       pwdInput.type = "text";
@@ -104,7 +104,7 @@ const LoginFormStyled = styled.form`
     right: 10px;
     i {
       color: var(--secondColor-light);
-      transition: color 250ms;
+      transition: color 250ms ease-in-out;
       &:hover {
         color: var(--secondColor);
       }
