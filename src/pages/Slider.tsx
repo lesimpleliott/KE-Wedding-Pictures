@@ -1,11 +1,10 @@
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import { Autoplay, Keyboard, Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import dataTest from "../assets/dataPhotos.json";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import dataPhotos from "../assets/dataPhotos.json";
 import TipBoxSlider from "../layouts/TipBoxSlider";
 import { RootState } from "../store";
@@ -43,7 +42,7 @@ const Slider = () => {
           }}
           keyboard={{ enabled: true }}
           scrollbar={{ draggable: true }}
-          rewind={true}
+          spaceBetween={25}
           loop={true}
           initialSlide={selectedPicture}
         >
