@@ -1,4 +1,4 @@
-import{p as S,j as y,r as p,u as H,a as I,b as V,L as q,s as T,d as x,N as W}from"./index-Vm2KpXsz.js";import{B as Q}from"./BackgroundImage-C1X0jReW.js";const U=({title:t,image:e})=>y.jsxs(X,{className:"banner",children:[y.jsx("h1",{children:t}),y.jsx(Q,{img:e})]}),X=S.section`
+import{p as S,j as y,r as p,u as H,a as I,b as V,L as q,s as T,d as x,N as W}from"./index-C03lusiP.js";import{B as Q}from"./BackgroundImage-G39ztkNw.js";const U=({title:t,image:e})=>y.jsxs(X,{className:"banner",children:[y.jsx("h1",{children:t}),y.jsx(Q,{img:e})]}),X=S.section`
   position: relative;
   height: 50vh;
   width: 100%;
