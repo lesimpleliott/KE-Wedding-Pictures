@@ -30,7 +30,8 @@ const Gallery = () => {
       {album && (
         <AlbumBanner
           title={album.title}
-          image={`../${album.path}/lowRes/${album.cover}.webp`}
+          image={`../${album.path}/medium/${album.cover}.webp`}
+          align={album.align as "center" | "top" | "bottom" | undefined}
         />
       )}
       <section className="infosContainer">

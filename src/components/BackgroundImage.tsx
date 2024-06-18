@@ -3,14 +3,16 @@ import styled from "styled-components";
 type BackgroundImageType = {
   img: string;
   blur?: boolean;
+  align?: string | undefined;
 };
 
-const BackgroundImage = ({ img, blur }: BackgroundImageType) => {
+const BackgroundImage = ({ img, blur, align }: BackgroundImageType) => {
   return (
     <BackgroundImageStyled
       src={img}
       alt="Katherine & Eliott - Photo de couverture"
       className={blur ? "blur" : ""}
+      style={{ objectPosition: `50% ${align}` }}
     />
   );
 };

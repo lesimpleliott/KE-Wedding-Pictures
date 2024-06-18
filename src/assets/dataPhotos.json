@@ -6,7 +6,7 @@
       "downloadLink": "./photos/Ceremonie-civile/Ceremonie-civile.zip",
       "path": "/photos/Ceremonie-civile",
       "preview": "MariageKE_Ceremonie-civile_54",
-      "cover": "MariageKE_Ceremonie-civile_54",
+      "cover": "MariageKE_Ceremonie-civile_44",
       "images": [
         {
           "id": "CIVILE1",
@@ -961,7 +961,7 @@
       "downloadLink": "./photos/Ceremonie-laique/Ceremonie-laique.zip",
       "path": "/photos/Ceremonie-laique",
       "preview": "MariageKE_Ceremonie-laique_11",
-      "cover": "MariageKE_Ceremonie-laique_11",
+      "cover": "MariageKE_Ceremonie-laique_226",
       "images": [
         {
           "id": "LAIQUE1",
@@ -2392,7 +2392,8 @@
       "downloadLink": "./photos/Photos-groupes/Photos-groupes.zip",
       "path": "/photos/Photos-groupes",
       "preview": "MariageKE_Photos-groupes_35",
-      "cover": "MariageKE_Photos-groupes_35",
+      "cover": "MariageKE_Photos-groupes_30",
+      "align": "30%",
       "images": [
         {
           "id": "GROUPE1",
@@ -2579,6 +2580,7 @@
       "path": "/photos/Cocktail",
       "preview": "MariageKE_Cocktail_46",
       "cover": "MariageKE_Cocktail_46",
+      "align": "75%",
       "images": [
         {
           "id": "COCKTAIL1",
@@ -3399,7 +3401,8 @@
       "downloadLink": "./photos/Decoration-reception/Decoration-reception.zip",
       "path": "/photos/Decoration-reception",
       "preview": "MariageKE_Decoration-reception_2",
-      "cover": "MariageKE_Decoration-reception_2",
+      "cover": "MariageKE_Decoration-reception_15",
+      "align": "10%",
       "images": [
         {
           "id": "DECO1",
@@ -3761,6 +3764,7 @@
       "path": "/photos/Photos-couple",
       "preview": "MariageKE_Photos-couple_26",
       "cover": "MariageKE_Photos-couple_26",
+      "align": "70%",
       "images": [
         {
           "id": "COUPLE1",
@@ -4120,8 +4124,9 @@
       "title": "Récéption",
       "downloadLink": "./photos/Reception/Reception.zip",
       "path": "/photos/Reception",
-      "preview": "MariageKE_Reception_37",
-      "cover": "MariageKE_Reception_37",
+      "preview": "MariageKE_Reception_6",
+      "cover": "MariageKE_Reception_87",
+      "align": "40%",
       "images": [
         {
           "id": "RECEP1",
@@ -6067,7 +6072,7 @@
       "downloadLink": "./photos/Vos-photos/Vos-photos.zip",
       "path": "/photos/Vos-photos",
       "preview": "MariageKE_Vos-photos_157",
-      "cover": "MariageKE_Vos-photos_157",
+      "cover": "MariageKE_Vos-photos_37",
       "images": [
         {
           "id": "WEDSHOOTS1",

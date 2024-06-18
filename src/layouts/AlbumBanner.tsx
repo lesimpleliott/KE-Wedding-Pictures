@@ -4,13 +4,14 @@ import BackgroundImage from "../components/BackgroundImage";
 type AlbumBannerProps = {
   title: string;
   image: string;
+  align?: string | undefined;
 };
 
-const AlbumBanner = ({ title, image }: AlbumBannerProps) => {
+const AlbumBanner = ({ title, image, align }: AlbumBannerProps) => {
   return (
     <AlbumBannerStyled className="banner">
       <h1>{title}</h1>
-      <BackgroundImage img={image} />
+      <BackgroundImage img={image} align={align} />
     </AlbumBannerStyled>
   );
 };
