@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Loader from "./components/Loader";
-import BurgerButton from "./components/menu/BurgerButton";
 import Menu from "./components/menu/Menu";
 import Slider from "./pages/Slider";
 import { RootState } from "./store";
@@ -13,15 +12,12 @@ const Login = lazy(() => import("./pages/Login"));
 
 const App = () => {
   const password = useSelector((state: RootState) => state.app.password);
+  const menuIsOpen = useSelector((state: RootState) => state.app.menuIsOpen);
+  document.body.style.overflow = menuIsOpen ? "hidden" : "";
 
   return (
     <BrowserRouter>
-      {password === import.meta.env.VITE_KATELIOSECRET && (
-        <>
-          <BurgerButton />
-          <Menu />
-        </>
-      )}
+      {password === import.meta.env.VITE_KATELIOSECRET && <Menu />}
 
       <Suspense fallback={<Loader />}>
         <Routes>

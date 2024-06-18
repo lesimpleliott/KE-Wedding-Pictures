@@ -28,7 +28,7 @@ const BurgerButtonStyled = styled.button`
   padding: 5px;
   margin: 20px;
   position: fixed;
-  z-index: 10;
+  z-index: 25;
   background: rgba(15, 15, 15, 0.4);
   border-radius: 5px;
   transition: transform 250ms ease-in-out;
