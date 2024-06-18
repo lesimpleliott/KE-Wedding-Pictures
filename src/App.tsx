@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Loader from "./components/Loader";
 import BurgerButton from "./components/menu/BurgerButton";
 import Menu from "./components/menu/Menu";
 import Slider from "./pages/Slider";
@@ -22,7 +23,7 @@ const App = () => {
         </>
       )}
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           {/* Redirige immédiatement vers /home si le mot de passe est correct */}
           {password === import.meta.env.VITE_KATELIOSECRET && (
