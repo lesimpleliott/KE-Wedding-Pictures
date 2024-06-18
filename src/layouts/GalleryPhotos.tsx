@@ -1,99 +1,86 @@
-import { useEffect, useState } from "react";
-import PhotoAlbum, { Photo } from "react-photo-album";
+import { Suspense, useCallback, useEffect, useState } from "react";
+import PhotoAlbum, { Photo as PhotoAlbumPhoto } from "react-photo-album";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import data from "../assets/dataPhotos.json";
+import Loader from "../components/Loader";
+import { ImageType } from "../types/imageType";
 
-// Types pour les albums et les images
-type ImageType = {
-  id: string;
-  author: string;
-  hd: string;
-  lowRes: string;
-};
-
-type AlbumType = {
-  id: string;
-  title: string;
-  downloadLink: string;
+type GalleryPhotosProps = {
   path: string;
-  cover: string;
-  images: ImageType[];
+  photos: ImageType[];
 };
 
-type AlbumDataType = {
-  albums: AlbumType[];
-};
-
-// Charger les données JSON
-const albumData: AlbumDataType = data;
-
-// Fonction pour obtenir les dimensions d'une image
-const getImageDimensions = (
-  src: string
-): Promise<{ width: number; height: number }> => {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => {
-      resolve({ width: img.width, height: img.height });
-    };
-    img.src = src;
-  });
-};
-
-// Fonction pour transformer les photos d'un album
-const transformPhotos = async (album: AlbumType): Promise<Photo[]> => {
-  const transformedImages = await Promise.all(
-    album.images.map(async (image) => {
-      const { width, height } = await getImageDimensions(
-        `${album.path}/thumbnail/${image.lowRes}`
-      );
-      return {
-        src: `${album.path}/thumbnail/${image.lowRes}`,
-        width,
-        height,
-        alt: image.id,
-        title: image.author,
-      };
-    })
+const GalleryPhotos = ({ path, photos }: GalleryPhotosProps) => {
+  const [transformedPhotos, setTransformedPhotos] = useState<PhotoAlbumPhoto[]>(
+    []
   );
-  return transformedImages;
-};
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const idAlbum = useParams<{ idAlbum: string }>().idAlbum;
 
-// Transformation des albums avec les photos
-const albums = albumData.albums.map((album) => ({
-  id: album.id,
-  title: album.title,
-  photos: transformPhotos(album),
-}));
+  // Fonction pour obtenir les dimensions des images
+  const getImageDimensions = (
+    src: string
+  ): Promise<{ width: number; height: number }> => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({ width: img.width, height: img.height });
+      };
+      img.src = src;
+    });
+  };
 
-// Composant GalleryPhotos
-const GalleryPhotos = () => {
-  const [currentAlbum /*, setCurrentAlbum*/] = useState<{
-    id: string;
-    title: string;
-    photos: Promise<Photo[]>;
-  }>(albums[0]);
-  const [photos, setPhotos] = useState<Photo[]>([]);
+  // Fonction pour transformer l'objet 'ImageType' en objet 'PhotoAlbumPhoto'
+  // Ajoute les dimensions de l'image
+  const formatPhotosArray = useCallback(
+    async (path: string, photos: ImageType[]): Promise<PhotoAlbumPhoto[]> => {
+      return Promise.all(
+        photos.map(async (photo) => {
+          const src = `${path}/thumbnail/${photo.name}.webp`;
+          const { width, height } = await getImageDimensions(src);
+          return {
+            src,
+            width,
+            height,
+            key: photo.name,
+          };
+        })
+      );
+    },
+    []
+  );
 
   useEffect(() => {
-    const loadPhotos = async () => {
-      const albumPhotos = await currentAlbum.photos;
-      setPhotos(albumPhotos);
+    const fetchFormatPhotosArray = async () => {
+      const transformed = await formatPhotosArray(path, photos);
+      setTransformedPhotos(transformed);
+      setIsLoading(false);
     };
-    loadPhotos();
-  }, [currentAlbum]);
+    fetchFormatPhotosArray();
+  }, [path, photos, formatPhotosArray]);
 
   return (
-    <GalleryPhotosStyled>
-      {/* <div className="album-selector">
-        {albums.map((album) => (
-          <button key={album.id} onClick={() => setCurrentAlbum(album)}>
-          {album.title}
-          </button>
-          ))}
-          </div> */}
-      <PhotoAlbum layout="masonry" photos={photos} />
-    </GalleryPhotosStyled>
+    <Suspense fallback={<div>Loading...</div>}>
+      <GalleryPhotosStyled>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <PhotoAlbum
+            layout="masonry"
+            photos={transformedPhotos}
+            columns={(containerWidth) => {
+              if (containerWidth < 400) return 1;
+              if (containerWidth < 768) return 2;
+              return 4;
+            }}
+            onClick={({ index }) => {
+              navigate(`/slider/${idAlbum}/${index}`);
+            }}
+          />
+        )}
+      </GalleryPhotosStyled>
+    </Suspense>
   );
 };
 

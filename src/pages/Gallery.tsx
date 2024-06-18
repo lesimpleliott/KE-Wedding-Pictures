@@ -3,7 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import dataPhotos from "../assets/dataPhotos.json";
 import AlbumBanner from "../layouts/AlbumBanner";
-// import GalleryPhotos from "../layouts/GalleryPhotos";
+import GalleryPhotos from "../layouts/GalleryPhotos";
 
 const Gallery = () => {
   const { idAlbum } = useParams<{ idAlbum: string }>();
@@ -55,7 +55,7 @@ const Gallery = () => {
           </NavLink>
         )}
       </section>
-      {/* <GalleryPhotos photos={album.images} /> */}
+      <GalleryPhotos path={album.path} photos={album.images} />
     </GalleryStyled>
   );
 };
@@ -63,7 +63,7 @@ const Gallery = () => {
 const GalleryStyled = styled.main`
   .infosContainer {
     width: 100%;
-    height: clamp(50px, 5vw, 100px);
+    height: clamp(50px, 5vw, 75px);
     max-width: calc(1260px + (2 * 5vw));
     padding-inline: 5vw;
     position: relative;
