@@ -1,4 +1,4 @@
-import{p as o,j as r}from"./index-C03lusiP.js";const i=({img:t,blur:e})=>r.jsx(s,{src:t,alt:"Katherine & Eliott - Photo de couverture",className:e?"blur":""}),s=o.img`
+import{p as r,j as s}from"./index-BOkEq1fM.js";const n=({img:t,blur:o,align:e})=>s.jsx(i,{src:t,alt:"Katherine & Eliott - Photo de couverture",className:o?"blur":"",style:{objectPosition:`50% ${e}`}}),i=r.img`
   width: 102%;
   height: 102%;
   position: absolute;
@@ -12,4 +12,4 @@ import{p as o,j as r}from"./index-C03lusiP.js";const i=({img:t,blur:e})=>r.jsx(s
   &.blur {
     filter: brightness(0.8) blur(5px);
   }
-`;export{i as B};
+`;export{n as B};
