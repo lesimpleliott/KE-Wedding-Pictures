@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PhotoAlbum, { Photo as PhotoAlbumPhoto } from "react-photo-album";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -64,31 +64,25 @@ const GalleryPhotos = ({ path, photos }: GalleryPhotosProps) => {
   }, [path, photos, formatPhotosArray]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <GalleryPhotosStyled>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <PhotoAlbum
-            layout="masonry"
-            photos={transformedPhotos}
-            columns={(containerWidth) => {
-              if (containerWidth < 400) return 1;
-              if (containerWidth < 768) return 2;
-              return 4;
-            }}
-            // onClick={({ index }) => {
-            //   navigate(`/slider/${idAlbum}`);
-            //  console.log(index)
-            // }}
-            onClick={({ index }) => {
-              navigate(`/slider/${idAlbum}`);
-              dispatch(setSelectedPicture(index));
-            }}
-          />
-        )}
-      </GalleryPhotosStyled>
-    </Suspense>
+    <GalleryPhotosStyled>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <PhotoAlbum
+          layout="masonry"
+          photos={transformedPhotos}
+          columns={(containerWidth) => {
+            if (containerWidth < 400) return 1;
+            if (containerWidth < 768) return 2;
+            return 4;
+          }}
+          onClick={({ index }) => {
+            navigate(`/slider/${idAlbum}`);
+            dispatch(setSelectedPicture(index));
+          }}
+        />
+      )}
+    </GalleryPhotosStyled>
   );
 };
 

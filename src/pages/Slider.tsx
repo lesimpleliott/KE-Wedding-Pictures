@@ -6,6 +6,7 @@ import "swiper/css/scrollbar";
 import { Autoplay, Keyboard, Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import dataPhotos from "../assets/dataPhotos.json";
+import CallToAction from "../components/CallToAction";
 import TipBoxSlider from "../layouts/TipBoxSlider";
 import { RootState } from "../store";
 
@@ -33,6 +34,7 @@ const Slider = () => {
         <button className="navButton next">
           <i className="fa-solid fa-chevron-right"></i>
         </button>
+        <TipBoxSlider />
         <Swiper
           className="mySwiper"
           modules={[Keyboard, Navigation, Scrollbar, Autoplay]}
@@ -48,6 +50,11 @@ const Slider = () => {
         >
           {photos.map((image, index) => (
             <SwiperSlide key={index}>
+              <CallToAction
+                dwlLink={`${album.path}/hd/${image.name}.jpg`}
+                icon="fa-solid fa-download"
+                text="Télécharger HD"
+              />
               <img
                 src={`${album.path}/lowRes/${image.name}.webp`}
                 alt={`Image ${index}`}
@@ -59,7 +66,6 @@ const Slider = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <TipBoxSlider />
       </SliderStyled>
     )
   );
@@ -125,7 +131,7 @@ const SliderStyled = styled.section`
         width: 100%;
         max-width: 100%;
         flex: 1;
-        max-height: 95%;
+        max-height: 85%;
         object-fit: contain;
       }
 

@@ -48,10 +48,10 @@ const TipBoxSlider = () => {
             ]}
             description="Faites défiler les photos en utilisant les flèches de votre clavier."
           />
-          <Tip
+          {/* <Tip
             keys={[{ text: "esc" }]}
             description="Utiliser la touche 'esc' pour retourner à la galerie."
-          />
+          /> */}
         </div>
       </TipBoxSliderStyled>
     )
