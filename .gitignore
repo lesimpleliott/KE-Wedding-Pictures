@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 .env
 public/photos/
-public/dowloads/
+public/downloads/
