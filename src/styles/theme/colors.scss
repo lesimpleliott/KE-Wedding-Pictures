@@ -1,0 +1,17 @@
+#root {
+  --text: var(--mainColor);
+  --contrast: #ffffff;
+
+  --mainColor: #273a7c;
+  --mainColor-light: #e3f2ff;
+  --mainColor-opacity: rgba(39, 58, 124, 0.6);
+
+  --secondColor: #e32d73;
+  --secondColor-light: #ffa8e3;
+  // --secondColor-opacity: rgba(227, 45, 115, 0.5);
+
+  --hoverCardBackground: rgba(255, 255, 255, 0.7);
+  // --bodyBgColor: $mainColor-light;
+  // --mainBgColor: #fff;
+  // --warningColor: rgb(200, 0, 0);
+}
