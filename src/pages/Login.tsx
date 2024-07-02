@@ -5,7 +5,7 @@ import LoginForm from "../components/LoginForm";
 const Login = () => {
   return (
     <LoginStyled>
-      <BackgroundImage img="./KE_mainCover.webp" align="70%" blur />
+      <BackgroundImage img="./KE_mainCover.avif" align="70%" blur />
       <img
         src="./logos/LogoKE_WhitePink_NoDate_V2_RVB.svg"
         alt="Katherine & Eliott - Logo"
