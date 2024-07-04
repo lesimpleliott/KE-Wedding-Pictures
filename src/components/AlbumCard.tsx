@@ -11,7 +11,7 @@ const AlbumCard = ({ album }: { album: AlbumType }) => {
       <NavLink to={albumLink} className="imageWrapper">
         <img
           className="preview"
-          src={`${album.path}/display/${album.preview}.avif`}
+          src={`${album.path}/display/${album.cover.mini}.avif`}
           alt={`Photos de l'album ${album.title}`}
         />
       </NavLink>
@@ -20,7 +20,7 @@ const AlbumCard = ({ album }: { album: AlbumType }) => {
           <a href={albumLink} className="btn">
             Voir l'album
           </a>
-          <a href={album.download} download className="btn">
+          <a href={album.zipFile} download className="btn">
             Télécharger
           </a>
         </div>

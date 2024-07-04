@@ -3,6 +3,8 @@ import data from "../assets/exportData.json";
 import AlbumCard from "../components/AlbumCard";
 
 const AlbumsGallery = () => {
+  console.log(data);
+
   return (
     <AlbumsGalleryStyled id="albumsContainer">
       {data.map((album) => (
