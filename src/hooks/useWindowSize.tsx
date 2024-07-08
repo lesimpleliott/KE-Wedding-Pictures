@@ -16,7 +16,6 @@ const useWindowSize = () => {
   }, []);
 
   return size;
-  console.log(size);
 };
 
 export default useWindowSize;

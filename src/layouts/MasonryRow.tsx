@@ -71,7 +71,11 @@ const MasonryRow: React.FC<MasonryRowProps> = ({ images }) => {
                 key={image.id}
                 style={{ width: `${imageWidth}px`, height: `${row.height}px` }}
               >
-                <img src={image.path.display} alt={image.filename} />
+                <img
+                  src={image.path.display}
+                  alt={image.filename}
+                  loading="lazy"
+                />
                 <div className="actionContainer">
                   <ActionButton
                     icon="fa-solid fa-download"
@@ -94,7 +98,7 @@ const MasonryRow: React.FC<MasonryRowProps> = ({ images }) => {
 };
 
 // Styled-components
-const GalleryContainerStyled = styled.div`
+const GalleryContainerStyled = styled.section`
   display: flex;
   flex-direction: column;
   gap: 10px;
