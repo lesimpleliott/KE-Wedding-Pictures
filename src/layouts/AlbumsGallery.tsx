@@ -3,8 +3,6 @@ import data from "../assets/exportData.json";
 import AlbumCard from "../components/AlbumCard";
 
 const AlbumsGallery = () => {
-  console.log(data);
-
   return (
     <AlbumsGalleryStyled id="albumsContainer">
       {data.map((album) => (
@@ -21,7 +19,6 @@ const AlbumsGalleryStyled = styled.section`
   padding-inline: 5vw;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  /* grid-auto-rows: 350px; */
   column-gap: 2vw;
   row-gap: clamp(2vw, 20px, 5vw);
 `;

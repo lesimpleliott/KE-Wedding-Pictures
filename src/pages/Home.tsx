@@ -14,18 +14,32 @@ const Home = () => {
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
+        // Supprime le hash de l'URL
+        window.history.replaceState(null, "", location.pathname);
       }
     }
   }, [location]);
+
+  const handleButtonClick = () => {
+    const element = document.getElementById("albumsContainer");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      // Supprime le hash de l'URL
+      window.history.replaceState(null, "", location.pathname);
+    }
+  };
 
   return (
     <HomeStyled>
       <HeroBanner img="./KE_mainCover.avif" imgAlign="70%">
         <div className="banner">
-          <img src="./logos/LogoKE_WhitePink_V2_RVB.svg" alt="" />
+          <img
+            src="./logos/LogoKE_WhitePink_V2_RVB.svg"
+            alt="Logo Katherine & Eliott"
+          />
         </div>
         <JumpinButton
-          href="#albumsContainer"
+          onClick={handleButtonClick}
           className="fa-solid fa-angles-down"
         />
       </HeroBanner>
@@ -35,10 +49,12 @@ const Home = () => {
 };
 
 const HomeStyled = styled.main`
+  scroll-behavior: smooth;
+
   .banner {
     width: 100%;
     padding: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.15);
     position: absolute;
     top: 35%;
     left: 50%;

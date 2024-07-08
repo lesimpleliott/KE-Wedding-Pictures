@@ -50,7 +50,7 @@ const MasonryRow: React.FC<MasonryRowProps> = ({ images }) => {
     if (currentRow.length > 0) {
       // Si la dernière ligne n'est pas entièrement remplie, utiliser une hauteur standard de 350px
       const rowHeight =
-        currentRow.length === 1 ? 250 : containerWidth / totalAspectRatio;
+        currentRow.length === 1 ? 350 : containerWidth / totalAspectRatio;
       rows.push({ images: currentRow, height: rowHeight });
     }
 
@@ -105,10 +105,13 @@ const GalleryContainerStyled = styled.section`
   width: 100%;
 `;
 
-const RowStyled = styled.div<{ height: number }>`
+const RowStyled = styled.div.attrs<{ height: number }>((props) => ({
+  style: {
+    height: `${props.height}px`,
+  },
+}))`
   display: flex;
   gap: 10px; /* Espace entre les images */
-  height: ${({ height }) => `${height}px`};
   width: 100%;
 `;
 

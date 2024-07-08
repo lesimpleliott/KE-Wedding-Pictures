@@ -1,26 +1,43 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AlbumType } from "../types/albumType";
 
 const AlbumCard = ({ album }: { album: AlbumType }) => {
-  // const albumLink = `/gallery/${album.id}`;
-  const albumLink = `/gallery`;
+  const navigate = useNavigate();
+  const albumLink = `/gallery/${album.id}`;
+
+  const handleCardClick = () => {
+    navigate(albumLink);
+  };
+
+  if (!album || !album.path || !album.cover || !album.cover.mini) {
+    return null;
+  }
 
   return (
-    <AlbumCardStyled>
-      <NavLink to={albumLink} className="imageWrapper">
+    <AlbumCardStyled onClick={handleCardClick}>
+      <div className="imageWrapper">
         <img
           className="preview"
           src={`${album.path}/display/${album.cover.mini}.avif`}
           alt={`Photos de l'album ${album.title}`}
         />
-      </NavLink>
+      </div>
       <div className="hoverBox">
         <div className="btnContainer">
-          <a href={albumLink} className="btn">
+          <a
+            href={albumLink}
+            className="btn"
+            onClick={(e) => e.stopPropagation()}
+          >
             Voir l'album
           </a>
-          <a href={album.zipFile} download className="btn">
+          <a
+            href={album.zipFile}
+            download
+            className="btn"
+            onClick={(e) => e.stopPropagation()}
+          >
             Télécharger
           </a>
         </div>
@@ -34,7 +51,7 @@ const AlbumCard = ({ album }: { album: AlbumType }) => {
   );
 };
 
-const AlbumCardStyled = styled.a`
+const AlbumCardStyled = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -62,19 +79,19 @@ const AlbumCardStyled = styled.a`
   }
 
   .title {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     height: fit-content;
     padding-top: 0.5rem;
     text-align: center;
-    transition: letter-spacing 400ms ease-out, font-weight 400ms ease-out;
+    transition: letter-spacing 300ms ease-out, font-weight 300ms ease-out;
   }
 
   &:hover {
     & .title {
       font-weight: 600;
-      letter-spacing: 0.15em;
-      transition: letter-spacing 400ms ease-out, font-weight 400ms ease-out;
+      letter-spacing: 0.1em;
+      transition: letter-spacing 300ms ease-out, font-weight 300ms ease-out;
     }
 
     // affichage de la hoverBox seulement sur desktop

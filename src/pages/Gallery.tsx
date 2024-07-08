@@ -1,17 +1,36 @@
+import { useEffect } from "react"; // Import de useEffect depuis React
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import data from "../assets/exportData.json";
 import HeroBanner from "../components/HeroBanner";
 import MasonryRow from "../layouts/MasonryRow";
 
 const Gallery = () => {
-  const album = data[0];
+  const { idAlbum } = useParams<{ idAlbum: string }>();
+  const navigate = useNavigate();
+  const album = data.find((album) => album.id === idAlbum);
+
+  useEffect(() => {
+    if (!album) {
+      navigate("/error");
+    }
+  }, [album, navigate]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  if (!album) {
+    return null;
+  }
+
   const images = album.images;
 
   return (
     <GalleryStyled>
       <HeroBanner
         img={`${album.path}/display/${album.cover.cover}.avif`}
-        imgAlign="50%"
+        imgAlign={album.cover.coverAlignment}
         height="50vh"
       >
         <h1>{album.title}</h1>

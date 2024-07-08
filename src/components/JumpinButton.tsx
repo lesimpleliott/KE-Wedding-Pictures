@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 type JumpinButtonProps = {
-  href: string;
+  onClick: () => void;
   className: string;
 };
 
-const JumpinButton = ({ href, className }: JumpinButtonProps) => {
+const JumpinButton = ({ onClick, className }: JumpinButtonProps) => {
   const [isJumping, setIsJumping] = useState(false);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const JumpinButton = ({ href, className }: JumpinButtonProps) => {
   }, []);
 
   return (
-    <JumpinButtonStyled href={href}>
+    <JumpinButtonStyled onClick={onClick}>
       <span className={`btn ${isJumping ? "jumpButton" : ""}`}>
         <i className={`icon ${className}`}></i>
       </span>
@@ -26,10 +26,14 @@ const JumpinButton = ({ href, className }: JumpinButtonProps) => {
   );
 };
 
-const JumpinButtonStyled = styled.a`
+const JumpinButtonStyled = styled.button`
   --size: 60px;
   --arrowsize: 1.5rem;
   color: var(--contrast);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 
   .btn {
     height: var(--size);
