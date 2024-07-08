@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Menu from "./layouts/Menu";
 import Error from "./pages/Error";
 import Gallery from "./pages/Gallery";
 import Home from "./pages/Home";
@@ -7,6 +8,7 @@ import Login from "./pages/Login";
 const App = () => {
   return (
     <BrowserRouter>
+      <Menu />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
