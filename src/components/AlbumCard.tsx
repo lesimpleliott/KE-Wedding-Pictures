@@ -75,6 +75,7 @@ const AlbumCardStyled = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 500ms ease;
     }
   }
 
@@ -88,6 +89,10 @@ const AlbumCardStyled = styled.div`
   }
 
   &:hover {
+    .preview {
+      transform: scale(1.05);
+    }
+
     & .title {
       font-weight: 600;
       letter-spacing: 0.1em;
