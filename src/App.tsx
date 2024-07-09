@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import ProtectedRoutes from "./hooks/ProtectedRoutes";
+import ProtectedRoutes from "./hooks/useProtectedRoutes";
 import Menu from "./layouts/Menu";
 import Error from "./pages/Error";
 import Gallery from "./pages/Gallery";
