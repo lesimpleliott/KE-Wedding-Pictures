@@ -386,6 +386,7 @@ Error generating stack: `+r.message+`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 500ms ease;
     }
   }
 
@@ -399,6 +400,10 @@ Error generating stack: `+r.message+`
   }
 
   &:hover {
+    .preview {
+      transform: scale(1.05);
+    }
+
     & .title {
       font-weight: 600;
       letter-spacing: 0.1em;
