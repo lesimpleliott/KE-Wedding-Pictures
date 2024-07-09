@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import data from "../assets/exportData.json";
 import HeroBanner from "../components/HeroBanner";
-import MasonryRow from "../layouts/MasonryRow";
+import MasonryLayout from "../layouts/MasonryLayout";
 
 const Gallery = () => {
   const { idAlbum } = useParams<{ idAlbum: string }>();
@@ -35,7 +35,7 @@ const Gallery = () => {
       >
         <h1>{album.title}</h1>
       </HeroBanner>
-      <MasonryRow images={images} />
+      <MasonryLayout images={images} />
     </GalleryStyled>
   );
 };
