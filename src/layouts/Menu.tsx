@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import dataPhotos from "../assets/exportData.json";
+import { setMenuIsOpen, setPassword } from "../feature/app.slice";
+import { RootState } from "../store";
 
 const Menu = () => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const menuIsOpen = useSelector((state: RootState) => state.app.menuIsOpen);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    setMenuIsOpen((prev) => !prev);
+    dispatch(setMenuIsOpen(!menuIsOpen));
   };
 
   const logout = () => {
-    console.log("logout");
-    setMenuIsOpen(false);
+    dispatch(setMenuIsOpen(false));
     sessionStorage.removeItem("password");
+    dispatch(setPassword(""));
     navigate("/");
   };
 
@@ -23,7 +27,7 @@ const Menu = () => {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setMenuIsOpen(false);
+        dispatch(setMenuIsOpen(false));
         event.stopPropagation();
       }
     };
@@ -37,12 +41,12 @@ const Menu = () => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown, true);
     };
-  }, [menuIsOpen, setMenuIsOpen]);
+  }, [menuIsOpen, dispatch]);
 
   return (
     <MenuStyled>
       <BurgerButtonStyled
-        onClick={() => setMenuIsOpen(!menuIsOpen)}
+        onClick={handleClick}
         className={`${menuIsOpen ? "open" : "close"}`}
       >
         <div className="burger">

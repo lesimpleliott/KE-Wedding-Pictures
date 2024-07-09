@@ -1,8 +1,11 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { setPassword } from "../feature/app.slice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleVisibility = () => {
     const pwdInput = document.getElementById("pwdInput") as HTMLInputElement;
@@ -25,20 +28,17 @@ const LoginForm = () => {
     const loginForm = document.getElementById("loginForm") as HTMLFormElement;
 
     if (pwdInput.value === import.meta.env.VITE_KATELIOPWD) {
+      dispatch(setPassword(pwdInput.value));
       sessionStorage.setItem("password", pwdInput.value);
       navigate("/home");
     } else {
       pwdInput.value = "";
       pwdInput.placeholder = "Mot de passe incorrect";
-      pwdInput.classList.add("error");
       loginForm.classList.add("error");
-
-      // reinitialise l'input après 1.5s
       setTimeout(() => {
         pwdInput.placeholder = "Mot de passe";
-        pwdInput.classList.remove("error");
         loginForm.classList.remove("error");
-      }, 1500);
+      }, 1000);
     }
   };
 
@@ -51,7 +51,7 @@ const LoginForm = () => {
         id="visibleIcon"
         onClick={toggleVisibility}
       >
-        <i className="fa-solid fa-eye-slash"></i>
+        <i className="fa-solid fa-eye"></i>
       </button>
       <button type="submit" id="passwordSubmit">
         <i className="fa-regular fa-paper-plane"></i>
