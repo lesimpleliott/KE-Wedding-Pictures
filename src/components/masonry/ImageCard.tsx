@@ -33,12 +33,15 @@ const ImageCard: React.FC<ImageCardProps> = ({ image, rowHeight }) => {
       <div className="actionContainer">
         <ActionButton
           icon="fa-solid fa-download"
-          onClick={() => handleDownload(image.path.hd, image.filename)}
+          onClick={(e) => {
+            e.stopPropagation(); // Empêche la propagation du clic vers le conteneur
+            handleDownload(image.path.hd, image.filename);
+          }}
         />
         {/* Fonctionnalité future : 'MON' Album */}
         {/* <ActionButton
           icon="fa-solid fa-cart-arrow-down"
-          onClick={() => handleCart(image.id, image.filename)}
+          onClick={() => console.log("Add to cart")}
         /> */}
       </div>
     </ImageContainerStyled>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 type ActionButtonProps = {
   icon: string; // FontAwesome icon class e.g., "fa-solid fa-download"
-  onClick: () => void; // Function to handle click event
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 const ActionButton = ({ icon, onClick }: ActionButtonProps) => {
