@@ -1,7 +1,9 @@
 // ImageCard.tsx
 
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { openSlider } from "../../redux/slider.slice";
 import { ImageType } from "../../types/imageType";
 import ActionButton from "./ActionButton";
 
@@ -13,6 +15,7 @@ type ImageCardProps = {
 const ImageCard: React.FC<ImageCardProps> = ({ image, rowHeight }) => {
   const aspectRatio = image.size.width / image.size.height;
   const imageWidth = rowHeight * aspectRatio;
+  const dispatch = useDispatch();
 
   const handleDownload = (url: string, filename: string) => {
     // Créer un lien invisible pour le téléchargement
@@ -25,9 +28,15 @@ const ImageCard: React.FC<ImageCardProps> = ({ image, rowHeight }) => {
     document.body.removeChild(link);
   };
 
+  // Ouvrir le slider avec l'image sélectionnée
+  const handleSliderOpen = () => {
+    dispatch(openSlider({ imageID: image.id }));
+  };
+
   return (
     <ImageContainerStyled
       style={{ width: `${imageWidth}px`, height: `${rowHeight}px` }}
+      onClick={handleSliderOpen}
     >
       <img src={image.path.display} alt={image.filename} loading="lazy" />
       <div className="actionContainer">

@@ -1,14 +1,20 @@
 import { useEffect } from "react"; // Import de useEffect depuis React
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import data from "../assets/exportData.json";
 import HeroBanner from "../components/HeroBanner";
 import MasonryLayout from "../layouts/MasonryLayout";
+import Slider from "../layouts/Slider";
+import { RootState } from "../store";
 
 const Gallery = () => {
-  const { idAlbum } = useParams<{ idAlbum: string }>();
   const navigate = useNavigate();
+  const { idAlbum } = useParams<{ idAlbum: string }>();
   const album = data.find((album) => album.id === idAlbum);
+  const sliderIsOpen = useSelector((state: RootState) => state.slider.isOpen);
+  const imageSelected = useSelector((state: RootState) => state.slider.imageID);
+  const images = album ? album.images : [];
 
   useEffect(() => {
     if (!album) {
@@ -24,7 +30,7 @@ const Gallery = () => {
     return null;
   }
 
-  const images = album.images;
+  document.body.style.overflow = sliderIsOpen ? "hidden" : "";
 
   return (
     <GalleryStyled>
@@ -36,6 +42,7 @@ const Gallery = () => {
         <h1>{album.title}</h1>
       </HeroBanner>
       <MasonryLayout images={images} />
+      {sliderIsOpen && <Slider imageID={imageSelected} />}
     </GalleryStyled>
   );
 };
