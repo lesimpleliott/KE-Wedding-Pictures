@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { setPassword } from "../feature/app.slice";
+import { setPassword } from "../redux/app.slice";
 
 const LoginForm = () => {
   const navigate = useNavigate();

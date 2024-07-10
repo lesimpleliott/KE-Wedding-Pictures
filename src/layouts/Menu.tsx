@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import dataPhotos from "../assets/exportData.json";
-import { setMenuIsOpen, setPassword } from "../feature/app.slice";
+import { setMenuIsOpen, setPassword } from "../redux/app.slice";
 import { RootState } from "../store";
 
 const Menu = () => {
