@@ -13,7 +13,6 @@ const Gallery = () => {
   const { idAlbum } = useParams<{ idAlbum: string }>();
   const album = data.find((album) => album.id === idAlbum);
   const sliderIsOpen = useSelector((state: RootState) => state.slider.isOpen);
-  const imageSelected = useSelector((state: RootState) => state.slider.imageID);
   const images = album ? album.images : [];
 
   useEffect(() => {
@@ -42,7 +41,7 @@ const Gallery = () => {
         <h1>{album.title}</h1>
       </HeroBanner>
       <MasonryLayout images={images} />
-      {sliderIsOpen && <Slider imageID={imageSelected} />}
+      {sliderIsOpen && <Slider />}
     </GalleryStyled>
   );
 };

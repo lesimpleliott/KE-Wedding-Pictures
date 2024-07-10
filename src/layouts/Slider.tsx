@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import data from "../assets/exportData.json"; // Assurez-vous que le chemin vers votre fichier JSON est correct
+import data from "../assets/exportData.json";
 import ImageContainer from "../components/slider/ImageContainer";
 import ImageTitle from "../components/slider/ImageTitle";
 import NavButtons from "../components/slider/NavButtons";
 import useKeyControls from "../hooks/useKeyControls";
-import useSwipeControls from "../hooks/useSwipeControls";
 import { closeSlider as closeSliderAction } from "../redux/slider.slice";
+import { RootState } from "../store";
 
-type SliderProps = {
-  imageID: number | null;
-};
-
-const Slider = ({ imageID }: SliderProps) => {
+const Slider = () => {
   const [imageIndex, setImageIndex] = useState(0);
   const dispatch = useDispatch();
+  const imageID = useSelector((state: RootState) => state.slider.imageID);
 
   // Trouver l'image et l'album avec l'ID de l'image
   const findImageAndAlbumById = (id: number | null) => {
@@ -61,12 +58,12 @@ const Slider = ({ imageID }: SliderProps) => {
   };
 
   // Utilisation des hooks pour les contrôles de swipe et de clavier
-  useSwipeControls({
-    handleNext,
-    handlePrev,
-    sensitivity: 50,
-    maxSwipeDistance: 1500,
-  });
+  // useSwipeControls({
+  //   handleNext,
+  //   handlePrev,
+  //   sensitivity: 50,
+  //   maxSwipeDistance: 1500,
+  // });
 
   useKeyControls({
     handleNext,
