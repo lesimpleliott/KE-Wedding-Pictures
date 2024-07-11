@@ -182,7 +182,7 @@ const BurgerButtonStyled = styled.button`
   height: 35px;
   width: 35px;
   padding: 5px;
-  margin: 20px;
+  margin: 10px 20px;
   position: fixed;
   z-index: 25;
   background: rgba(15, 15, 15, 0.4);

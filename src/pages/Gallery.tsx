@@ -1,8 +1,9 @@
-import { useEffect } from "react"; // Import de useEffect depuis React
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import data from "../assets/exportData.json";
+import NavbarGallery from "../components/gallery/NavbarGallery";
 import HeroBanner from "../components/HeroBanner";
 import MasonryLayout from "../layouts/MasonryLayout";
 import Slider from "../layouts/Slider";
@@ -23,11 +24,15 @@ const Gallery = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [idAlbum]);
 
   if (!album) {
     return null;
   }
+
+  const albumIndex = data.findIndex((a) => a.id === idAlbum);
+  const previousAlbum = albumIndex > 0 ? data[albumIndex - 1] : null;
+  const nextAlbum = albumIndex < data.length - 1 ? data[albumIndex + 1] : null;
 
   document.body.style.overflow = sliderIsOpen ? "hidden" : "";
 
@@ -40,6 +45,11 @@ const Gallery = () => {
       >
         <h1>{album.title}</h1>
       </HeroBanner>
+      <NavbarGallery
+        album={album}
+        previousAlbum={previousAlbum}
+        nextAlbum={nextAlbum}
+      />
       <MasonryLayout images={images} />
       {sliderIsOpen && <Slider />}
     </GalleryStyled>
@@ -68,7 +78,6 @@ const GalleryStyled = styled.main`
   .masonryContainer {
     max-width: calc(1280px + 5vw);
     padding-inline: 5vw;
-    padding-block: 2vw;
   }
 `;
 
