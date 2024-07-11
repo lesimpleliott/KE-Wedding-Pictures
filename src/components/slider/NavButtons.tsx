@@ -38,7 +38,6 @@ const NavBoxStyled = styled.div`
   button {
     width: clamp(2rem, 5vw, 3rem);
     height: clamp(2rem, 5vw, 3rem);
-    padding: 0rem;
     position: absolute;
     top: 48%;
     transform: translateY(-50%);
@@ -46,8 +45,8 @@ const NavBoxStyled = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    background-color: rgba(230, 230, 230, 0.3);
-    transition: background-color 250ms ease-out;
+    background-color: rgba(230, 230, 230, 0.4);
+    transition: background-color 250ms ease-out, transform 250ms ease-out;
 
     &.prev {
       left: 2vw;
@@ -67,6 +66,7 @@ const NavBoxStyled = styled.div`
 
     &:hover {
       background-color: rgba(200, 200, 200, 0.8);
+      transform: translateY(-50%) scale(1.1);
       i {
         color: rgb(100, 100, 100);
       }
