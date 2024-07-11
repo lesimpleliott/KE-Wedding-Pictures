@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import data from "../assets/exportData.json";
@@ -7,10 +7,12 @@ import NavbarGallery from "../components/gallery/NavbarGallery";
 import HeroBanner from "../components/HeroBanner";
 import MasonryLayout from "../layouts/MasonryLayout";
 import Slider from "../layouts/Slider";
+import { closeSlider } from "../redux/slider.slice";
 import { RootState } from "../store";
 
 const Gallery = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { idAlbum } = useParams<{ idAlbum: string }>();
   const album = data.find((album) => album.id === idAlbum);
   const sliderIsOpen = useSelector((state: RootState) => state.slider.isOpen);
@@ -25,6 +27,10 @@ const Gallery = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [idAlbum]);
+
+  useEffect(() => {
+    dispatch(closeSlider());
+  }, [dispatch]);
 
   if (!album) {
     return null;

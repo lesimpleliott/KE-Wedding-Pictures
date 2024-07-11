@@ -1,13 +1,26 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import HeroBanner from "../components/HeroBanner";
 import JumpinButton from "../components/JumpinButton";
 import AlbumsGallery from "../layouts/AlbumsGallery";
+import { closeSlider } from "../redux/slider.slice";
 
 const Home = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
 
+  // Scroll en haut de la page au chargement
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    dispatch(closeSlider());
+  }, [dispatch]);
+
+  // Scroll jusqu'à l'élément ciblé par le hash dans l'URL
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.substring(1);
