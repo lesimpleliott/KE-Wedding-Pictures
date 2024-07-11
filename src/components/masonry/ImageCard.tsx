@@ -1,6 +1,4 @@
-// ImageCard.tsx
-
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { openSlider } from "../../redux/slider.slice";
@@ -13,9 +11,42 @@ type ImageCardProps = {
 };
 
 const ImageCard: React.FC<ImageCardProps> = ({ image, rowHeight }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement | null>(null);
   const aspectRatio = image.size.width / image.size.height;
   const imageWidth = rowHeight * aspectRatio;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const currentImgRef = imgRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsLoaded(true);
+            if (currentImgRef) {
+              observer.unobserve(currentImgRef);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px 200px 0px", // Optionnel : pour charger légèrement avant qu'il soit visible
+        threshold: 0.1, // Optionnel : pour déclencher quand au moins 10% de l'image est visible
+      }
+    );
+
+    if (currentImgRef) {
+      observer.observe(currentImgRef);
+    }
+
+    return () => {
+      if (currentImgRef) {
+        observer.unobserve(currentImgRef);
+      }
+    };
+  }, []);
 
   const handleDownload = (url: string, filename: string) => {
     // Créer un lien invisible pour le téléchargement
@@ -38,7 +69,13 @@ const ImageCard: React.FC<ImageCardProps> = ({ image, rowHeight }) => {
       style={{ width: `${imageWidth}px`, height: `${rowHeight}px` }}
       onClick={handleSliderOpen}
     >
-      <img src={image.path.display} alt={image.filename} loading="lazy" />
+      <img
+        ref={imgRef}
+        src={isLoaded ? image.path.display : ""}
+        alt={image.filename}
+        loading="lazy"
+        style={{ opacity: isLoaded ? 1 : 0 }}
+      />
       <div className="actionContainer">
         <ActionButton
           icon="fa-solid fa-download"
