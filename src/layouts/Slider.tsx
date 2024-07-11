@@ -6,6 +6,7 @@ import ImageContainer from "../components/slider/ImageContainer";
 import ImageTitle from "../components/slider/ImageTitle";
 import NavButtons from "../components/slider/NavButtons";
 import useKeyControls from "../hooks/useKeyControls";
+import useSwipeControls from "../hooks/useSwipeControls";
 import { closeSlider as closeSliderAction } from "../redux/slider.slice";
 import { RootState } from "../store";
 
@@ -58,12 +59,14 @@ const Slider = () => {
   };
 
   // Utilisation des hooks pour les contrôles de swipe et de clavier
-  // useSwipeControls({
-  //   handleNext,
-  //   handlePrev,
-  //   sensitivity: 50,
-  //   maxSwipeDistance: 1500,
-  // });
+  useSwipeControls({
+    handleNext,
+    handlePrev,
+    closeSlider,
+    horizontalSensitivity: 75,
+    verticalSensitivity: 100,
+    maxSwipeDistance: 200,
+  });
 
   useKeyControls({
     handleNext,
