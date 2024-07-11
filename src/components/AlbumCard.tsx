@@ -33,7 +33,7 @@ const AlbumCard = ({ album }: { album: AlbumType }) => {
             Voir l'album
           </a>
           <a
-            href={album.zipFile}
+            href={`${album.path}${album.zipFile}`}
             download
             className="btn"
             onClick={(e) => e.stopPropagation()}
