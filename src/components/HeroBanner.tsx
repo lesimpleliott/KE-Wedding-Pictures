@@ -22,7 +22,7 @@ const HeroBannerStyled = styled.section<{ height?: string }>`
   width: 100%;
   height: ${({ height }) => height || "100vh"};
   position: relative;
-  padding-bottom: 25px;
+  padding-bottom: calc(110px - 5vw);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
