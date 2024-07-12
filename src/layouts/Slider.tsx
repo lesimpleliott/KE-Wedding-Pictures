@@ -6,6 +6,8 @@ import ActionButtons from "../components/slider/ActionButtons";
 import ImageContainer from "../components/slider/ImageContainer";
 import ImageTitle from "../components/slider/ImageTitle";
 import NavButtons from "../components/slider/NavButtons";
+
+import TipsBoxSlider from "../components/slider/Tipbox";
 import useKeyControls from "../hooks/useKeyControls";
 import useSwipeControls from "../hooks/useSwipeControls";
 import { closeSlider as closeSliderAction } from "../redux/slider.slice";
@@ -109,6 +111,7 @@ const Slider = () => {
         handleNext={handleNext}
         handlePrev={handlePrev}
       />
+      <TipsBoxSlider />
     </SliderStyled>
   ) : null;
 };
