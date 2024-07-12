@@ -7,7 +7,7 @@ import NavbarGallery from "../components/gallery/NavbarGallery";
 import HeroBanner from "../components/HeroBanner";
 import MasonryLayout from "../layouts/MasonryLayout";
 import Slider from "../layouts/Slider";
-import { closeSlider } from "../redux/slider.slice";
+import { closeSlider, openSlider } from "../redux/slider.slice";
 import { RootState } from "../store";
 
 const Gallery = () => {
@@ -30,6 +30,17 @@ const Gallery = () => {
 
   useEffect(() => {
     dispatch(closeSlider());
+  }, [dispatch]);
+
+  useEffect(() => {
+    // Vérifie s'il y a une image active dans Redux au chargement de la page
+    const storedState = localStorage.getItem("sliderState");
+    if (storedState) {
+      const { isOpen, imageID } = JSON.parse(storedState);
+      if (isOpen && imageID) {
+        dispatch(openSlider({ imageID }));
+      }
+    }
   }, [dispatch]);
 
   if (!album) {
