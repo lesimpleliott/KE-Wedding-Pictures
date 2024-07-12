@@ -82,6 +82,7 @@ const GalleryStyled = styled.main`
   .masonryContainer {
     max-width: calc(1280px + 5vw);
     padding-inline: 5vw;
+    padding-block-end: 2rem;
   }
 `;
 

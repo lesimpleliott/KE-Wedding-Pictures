@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "./hooks/useProtectedRoutes";
+import Footer from "./layouts/Footer";
 import Menu from "./layouts/Menu";
 import Error from "./pages/Error";
 import Gallery from "./pages/Gallery";
@@ -30,6 +31,7 @@ const App = () => {
         {/* Si le mot de passe est incorrect, affiche la page de connexion */}
         <Route path="/" element={<Login />} />
       </Routes>
+      {password === import.meta.env.VITE_KATELIOPWD && <Footer />}
     </BrowserRouter>
   );
 };
