@@ -34,6 +34,7 @@ const ActionButtonsStyled = styled.div`
     height: clamp(2.5rem, 5vw, 3rem);
     border-radius: 100%;
     background-color: rgba(200, 200, 200, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: background-color 250ms ease-out, transform 250ms ease-out;
 
     i {
@@ -41,7 +42,7 @@ const ActionButtonsStyled = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: rgb(150, 150, 150);
+      color: rgb(120, 120, 120);
       font-size: 1.5rem;
     }
 
