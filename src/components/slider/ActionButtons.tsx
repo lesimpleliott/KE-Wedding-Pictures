@@ -19,7 +19,7 @@ const ActionButtons = ({ closeSlider, download }: ActionButtonsProps) => {
   );
 };
 
-const ActionButtonsStyled = styled.button`
+const ActionButtonsStyled = styled.div`
   position: absolute;
   top: 2vw;
   right: 2vw;
@@ -44,26 +44,6 @@ const ActionButtonsStyled = styled.button`
       color: rgb(150, 150, 150);
       font-size: 1.5rem;
     }
-
-    /* 
-    .icon {
-      width: 60%;
-      height: 3px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      background-color: rgb(150, 150, 150);
-      border-radius: 10px;
-
-      &.close {
-        &:first-child {
-          transform: translate(-50%, -50%) rotate(45deg);
-        }
-        &:last-child {
-          transform: translate(-50%, -50%) rotate(-45deg);
-        }
-      }
-    }*/
 
     &:hover {
       background-color: rgba(200, 200, 200, 0.8);
