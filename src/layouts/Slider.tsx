@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import data from "../assets/exportData.json";
-import CloseButton from "../components/slider/CloseButton";
+import ActionButtons from "../components/slider/ActionButtons";
 import ImageContainer from "../components/slider/ImageContainer";
 import ImageTitle from "../components/slider/ImageTitle";
 import NavButtons from "../components/slider/NavButtons";
@@ -79,7 +79,10 @@ const Slider = () => {
     <SliderStyled>
       <ImageContainer images={album.images} imageIndex={imageIndex} />
       <ImageTitle image={currentImage} albumTitle={album.title} />
-      <CloseButton closeSlider={closeSlider} />
+      <ActionButtons
+        closeSlider={closeSlider}
+        download={currentImage.path.hd}
+      />
       <NavButtons
         imageIndex={imageIndex}
         imagesLength={album.images.length}
