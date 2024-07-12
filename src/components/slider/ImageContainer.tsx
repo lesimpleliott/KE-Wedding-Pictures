@@ -84,7 +84,7 @@ const ImageContainerStyled = styled.div`
     min-width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform 300ms ease-in-out;
+    /* transition: transform 3000ms ease-in-out; */
   }
 `;
 
