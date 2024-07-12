@@ -40,8 +40,6 @@ const Gallery = () => {
   const previousAlbum = albumIndex > 0 ? data[albumIndex - 1] : null;
   const nextAlbum = albumIndex < data.length - 1 ? data[albumIndex + 1] : null;
 
-  document.body.style.overflow = sliderIsOpen ? "hidden" : "";
-
   return (
     <GalleryStyled>
       <HeroBanner

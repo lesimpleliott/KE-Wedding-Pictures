@@ -28,21 +28,41 @@ const Slider = () => {
     return { album: null, image: null };
   };
   const { album, image } = findImageAndAlbumById(imageID);
-  const [currentImage, setCurrentImage] = useState(image); //// Voir pour déplacer cette ligne au dessus de la fonction findImageAndAlbumById avec les declaration de state imageIndex !!
+  const [currentImage, setCurrentImage] = useState(image);
 
   useEffect(() => {
-    if (album && image) {
-      const index = album.images.findIndex((img) => img.id === image.id);
-      setImageIndex(index);
-      setCurrentImage(image);
+    if (album) {
+      const index = album.images.findIndex((img) => img.id === imageID);
+      if (index !== -1) {
+        setImageIndex(index);
+        setCurrentImage(album.images[index]);
+      }
     }
-  }, [album, image]);
+  }, [album, imageID]);
 
   useEffect(() => {
     if (album) {
       setCurrentImage(album.images[imageIndex]);
     }
   }, [album, imageIndex]);
+
+  const sliderIsOpen = useSelector((state: RootState) => state.slider.isOpen);
+  useEffect(() => {
+    if (sliderIsOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    };
+  }, [sliderIsOpen]);
 
   // Fonctions pour la navigation
   const handleNext = () => {
