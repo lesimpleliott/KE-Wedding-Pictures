@@ -45,7 +45,7 @@ const NavBoxStyled = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    background-color: rgba(230, 230, 230, 0.4);
+    background-color: rgba(200, 200, 200, 0.3);
     transition: background-color 250ms ease-out, transform 250ms ease-out;
 
     &.prev {

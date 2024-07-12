@@ -81,6 +81,7 @@ const LoginFormStyled = styled.form`
     &::placeholder {
       font-style: italic;
       font-weight: 300;
+      font-size: 14px;
     }
   }
 

@@ -22,41 +22,38 @@ const NavbarGallery = ({
 
   return (
     <NavbarGalleryStyled>
-      <a
-        href={`${album.path}${album.zipFile}`}
-        className="actionBtn"
-        id="download"
-        download
-      >
+      <a href={`${album.path}${album.zipFile}`} className="actionBtn" download>
         <p className="actionBtn__text">Télécharger l'album</p>
         <i className="actionBtn__icon fa-solid fa-file-zipper" />
       </a>
 
-      {previousAlbum && (
-        <NavLink
-          to={`/gallery/${previousAlbum.id}`}
-          className="actionBtn"
-          id="prev"
-        >
+      {previousAlbum ? (
+        <NavLink to={`/gallery/${previousAlbum.id}`} className="actionBtn">
           <p className="actionBtn__text">{previousAlbum.title}</p>
           <i className="actionBtn__icon fa-solid fa-angles-left"></i>
         </NavLink>
+      ) : (
+        <div className="actionBtn disabled">
+          <p className="actionBtn__text">nope</p>
+          <i className="actionBtn__icon fa-solid fa-angles-left"></i>
+        </div>
       )}
 
-      <button className="actionBtn" id="play" onClick={handleSlider}>
+      <button className="actionBtn" onClick={handleSlider}>
         <p className="actionBtn__text">Lancer le diaporama</p>
         <i className="actionBtn__icon fa-solid fa-play"></i>
       </button>
 
-      {nextAlbum && (
-        <NavLink
-          to={`/gallery/${nextAlbum.id}`}
-          className="actionBtn"
-          id="next"
-        >
+      {nextAlbum ? (
+        <NavLink to={`/gallery/${nextAlbum.id}`} className="actionBtn">
           <p className="actionBtn__text">{nextAlbum.title}</p>
           <i className="actionBtn__icon fa-solid fa-angles-right"></i>
         </NavLink>
+      ) : (
+        <div className="actionBtn disabled">
+          <p className="actionBtn__text">nope</p>
+          <i className="actionBtn__icon fa-solid fa-angles-right"></i>
+        </div>
       )}
     </NavbarGalleryStyled>
   );
@@ -71,7 +68,7 @@ const NavbarGalleryStyled = styled.nav`
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
 
   display: flex;
@@ -91,7 +88,16 @@ const NavbarGalleryStyled = styled.nav`
     position: relative;
     background-color: var(--mainColor);
     border-radius: 100%;
-    transition: background-color 200ms ease-out;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 200ms ease-out, box-shadow 200ms ease-out;
+
+    &.disabled {
+      background-color: rgb(144, 155, 195);
+
+      &:hover {
+        background-color: rgb(123, 133, 169);
+      }
+    }
 
     &__icon {
       color: #fff;
@@ -113,12 +119,13 @@ const NavbarGalleryStyled = styled.nav`
       position: absolute;
       bottom: -40px;
       z-index: 1;
+      user-select: none;
 
-      background-color: rgb(200, 200, 200, 0.8);
+      background-color: rgb(222, 222, 222, 0.8);
       color: var(--mainColor);
       border-radius: 6px;
       white-space: nowrap;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 
       visibility: hidden;
       opacity: 0;
@@ -140,6 +147,8 @@ const NavbarGalleryStyled = styled.nav`
 
     &:hover {
       background-color: var(--secondColor);
+      box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+
       .actionBtn__text {
         visibility: visible;
         opacity: 1;
