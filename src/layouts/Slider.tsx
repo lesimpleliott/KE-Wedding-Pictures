@@ -85,10 +85,10 @@ const Slider = () => {
   useSwipeControls({
     handleNext,
     handlePrev,
-    closeSlider,
+    // closeSlider,
+    // verticalSensitivity: 100,
     horizontalSensitivity: 75,
-    verticalSensitivity: 100,
-    maxSwipeDistance: 200,
+    maxSwipeDistance: 300,
   });
 
   useKeyControls({
@@ -119,14 +119,14 @@ const Slider = () => {
 const SliderStyled = styled.aside`
   width: 100%;
   height: 100vh;
+  max-height: 100svh;
   position: fixed;
-  inset: 0;
   z-index: 50;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  touch-action: pan-y;
+  overflow: auto; /* Permet le zoom sur le contenu */
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -141,11 +141,6 @@ const SliderStyled = styled.aside`
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  @media screen and (max-width: 768px) {
-    height: 100vh;
-    padding-block: 5vh;
   }
 `;
 

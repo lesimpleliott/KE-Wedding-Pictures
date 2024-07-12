@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 type SwipeControlsProps = {
   handleNext: () => void;
   handlePrev: () => void;
-  closeSlider: () => void;
-  horizontalSensitivity: number; // Ajoute une option de sensibilité personnalisée pour swipe horizontal
-  verticalSensitivity: number; // Ajoute une option de sensibilité personnalisée pour swipe vertical
-  maxSwipeDistance: number; // Ajoute une option pour la distance maximale de swipe
+  closeSlider?: () => void;
+  verticalSensitivity?: number;
+  horizontalSensitivity: number;
+  maxSwipeDistance: number;
 };
 
 const useSwipeControls = ({
@@ -14,36 +14,45 @@ const useSwipeControls = ({
   handlePrev,
   closeSlider,
   horizontalSensitivity,
-  verticalSensitivity,
+  verticalSensitivity = 100, // Provide a default value for horizontalSensitivity
   maxSwipeDistance,
 }: SwipeControlsProps) => {
-  useEffect(() => {
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let touchStartY = 0;
-    let touchEndY = 0;
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchEndY = useRef(0);
 
+  useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
+      touchStartX.current = e.changedTouches[0].screenX;
+      touchStartY.current = e.changedTouches[0].screenY;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      touchEndX = e.changedTouches[0].screenX;
-      touchEndY = e.changedTouches[0].screenY;
+      touchEndX.current = e.changedTouches[0].screenX;
+      touchEndY.current = e.changedTouches[0].screenY;
     };
 
     const handleTouchEnd = () => {
-      const horizontalDistance = Math.abs(touchStartX - touchEndX);
-      const verticalDistance = Math.abs(touchStartY - touchEndY);
+      const horizontalDistance = Math.abs(
+        touchStartX.current - touchEndX.current
+      );
+      const verticalDistance = Math.abs(
+        touchStartY.current - touchEndY.current
+      );
+
+      console.log("horizontalDistance:", horizontalDistance);
+      console.log("verticalDistance:", verticalDistance);
 
       if (
         horizontalDistance > horizontalSensitivity &&
         horizontalDistance < maxSwipeDistance
       ) {
-        if (touchEndX - touchStartX > 0) {
+        if (touchEndX.current - touchStartX.current > 0) {
+          console.log("Swipe vers la droite");
           handlePrev(); // Swipe vers la droite
         } else {
+          console.log("Swipe vers la gauche");
           handleNext(); // Swipe vers la gauche
         }
       }
@@ -52,8 +61,9 @@ const useSwipeControls = ({
         verticalDistance > verticalSensitivity &&
         verticalDistance < maxSwipeDistance
       ) {
-        if (touchEndY - touchStartY > 0) {
-          closeSlider(); // Swipe vers le bas
+        if (touchEndY.current - touchStartY.current > 0) {
+          console.log("Swipe vers le bas");
+          closeSlider && closeSlider(); // Swipe vers le bas
         }
       }
     };
