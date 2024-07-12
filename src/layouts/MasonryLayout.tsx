@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MasonryRow from "../components/masonry/MasonryRow";
-import useWindowSize from "../hooks/useWindowSize";
+import useResizeObserver from "../hooks/useResizeObserver";
 import { ImageType } from "../types/imageType";
 
 type MasonryLayoutProps = {
@@ -9,7 +9,7 @@ type MasonryLayoutProps = {
 };
 
 const MasonryLayout: React.FC<MasonryLayoutProps> = ({ images }) => {
-  const [windowWidth] = useWindowSize();
+  const { width: containerWidth, containerRef } = useResizeObserver();
   const [rows, setRows] = useState<
     Array<{ images: ImageType[]; height: number }>
   >([]);
@@ -47,12 +47,14 @@ const MasonryLayout: React.FC<MasonryLayoutProps> = ({ images }) => {
       return rows;
     };
 
-    const newRows = createRows(images, windowWidth);
-    setRows(newRows);
-  }, [images, windowWidth]);
+    if (containerWidth) {
+      const newRows = createRows(images, containerWidth);
+      setRows(newRows);
+    }
+  }, [images, containerWidth]);
 
   return (
-    <GalleryContainerStyled className="masonryContainer">
+    <GalleryContainerStyled className="masonryContainer" ref={containerRef}>
       {rows.map((row, rowIndex) => (
         <MasonryRow key={rowIndex} images={row.images} rowHeight={row.height} />
       ))}
