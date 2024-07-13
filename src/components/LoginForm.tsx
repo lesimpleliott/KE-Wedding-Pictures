@@ -51,7 +51,7 @@ const LoginForm = () => {
         id="visibleIcon"
         onClick={toggleVisibility}
       >
-        <i className="fa-solid fa-eye"></i>
+        <i className="fa-solid fa-eye-slash"></i>
       </button>
       <button type="submit" id="passwordSubmit">
         <i className="fa-regular fa-paper-plane"></i>
