@@ -21,11 +21,11 @@ const ActionButtons = ({ closeSlider, download }: ActionButtonsProps) => {
 
 const ActionButtonsStyled = styled.div`
   position: absolute;
-  top: 2vw;
+  top: 1rem;
   right: 2vw;
   z-index: 100;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   gap: 1rem;
 
   .btn {

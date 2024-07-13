@@ -23,7 +23,7 @@ const NavbarGallery = ({
   return (
     <NavbarGalleryStyled>
       <a href={`${album.path}${album.zipFile}`} className="actionBtn" download>
-        <p className="actionBtn__text">Télécharger l'album</p>
+        <p className="actionBtn__text">Télécharger "{album.title}" (zip)</p>
         <i className="actionBtn__icon fa-solid fa-file-zipper" />
       </a>
 

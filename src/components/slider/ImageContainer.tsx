@@ -76,7 +76,7 @@ const ImageContainer = ({ images, imageIndex }: ImageContainerProps) => {
 
 const ImageContainerStyled = styled.div`
   width: 100%;
-  height: 90%;
+  /* height: 100%; */
   overflow: hidden;
   display: flex;
 

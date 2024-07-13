@@ -17,14 +17,12 @@ const ImageTitle = ({ image, albumTitle }: ImageTitleProps) => {
 };
 
 const ImageTitleStyled = styled.section`
-  height: 5%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
   p {
-    height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;

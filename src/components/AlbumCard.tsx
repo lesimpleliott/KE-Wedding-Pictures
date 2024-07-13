@@ -81,7 +81,7 @@ const AlbumCardStyled = styled.div`
 
   .title {
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     height: fit-content;
     padding-top: 0.5rem;
     text-align: center;
@@ -94,7 +94,7 @@ const AlbumCardStyled = styled.div`
     }
 
     & .title {
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.1em;
       transition: letter-spacing 300ms ease-out, font-weight 300ms ease-out;
     }

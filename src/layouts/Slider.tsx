@@ -136,13 +136,15 @@ const Slider = () => {
 const SliderStyled = styled.aside`
   width: 100%;
   height: 100vh;
-  max-height: 100svh;
+  max-height: 100dvh;
+  padding-block-start: 1rem;
   position: fixed;
   z-index: 50;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
   overflow: auto; /* Permet le zoom sur le contenu */
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);

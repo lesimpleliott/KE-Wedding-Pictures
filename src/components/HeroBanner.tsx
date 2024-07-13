@@ -20,9 +20,9 @@ const HeroBanner = ({ img, imgAlign, height, children }: HeroBannerProps) => {
 
 const HeroBannerStyled = styled.section<{ height?: string }>`
   width: 100%;
-  height: ${({ height }) => height || "100vh"};
+  height: ${({ height }) => height || "100dvh"};
   position: relative;
-  padding-bottom: calc(110px - 5vw);
+  padding-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
