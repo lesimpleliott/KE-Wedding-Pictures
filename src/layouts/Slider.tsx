@@ -109,6 +109,7 @@ const Slider = () => {
 
   const closeSlider = () => {
     dispatch(closeSliderAction());
+    sessionStorage.removeItem("sliderState");
   };
 
   // Utilisation des hooks pour les contrôles de swipe et de clavier

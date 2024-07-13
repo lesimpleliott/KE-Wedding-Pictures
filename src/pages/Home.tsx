@@ -18,6 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(closeSlider());
+    sessionStorage.removeItem("sliderState");
   }, [dispatch]);
 
   // Scroll jusqu'à l'élément ciblé par le hash dans l'URL
