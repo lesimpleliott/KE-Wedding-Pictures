@@ -3,7 +3,14 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <FooterStyled>
-      <p>Made by Katelio with ❤️ and lots of ☕️</p>
+      <p>© Made by Katelio with ❤️ and lots of ☕️</p>
+      <p>
+        Photos par{" "}
+        <a href="https://fabricejoubert.fr/" target="_blank" rel="noreferrer">
+          Fabrice Joubert Photographe
+        </a>
+      </p>
+
       <p>
         Contactez-nous :{" "}
         <a href="mailto:contact@katelio.fr">contact@katelio.fr</a>
@@ -18,11 +25,11 @@ const FooterStyled = styled.footer`
   text-align: center;
   width: 100%;
   background-color: var(--mainColor-opacity);
+  line-height: 1.6;
 
   p {
     color: white;
-    font-size: 0.9rem;
-    font-weight: 400;
+    font-size: clamp(0.8rem, 2vw, 1rem);
   }
 
   a {

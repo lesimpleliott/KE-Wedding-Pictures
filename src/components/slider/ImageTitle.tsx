@@ -9,9 +9,18 @@ type ImageTitleProps = {
 const ImageTitle = ({ image, albumTitle }: ImageTitleProps) => {
   return (
     <ImageTitleStyled>
-      <p>
-        {image.author} - {albumTitle} ({image.id})
-      </p>
+      {image.author === "Fabrice Joubert Photographe" ? (
+        <p className="text">
+          <a href="https://fabricejoubert.fr/" target="_blank" rel="noreferrer">
+            {image.author}
+          </a>{" "}
+          - {albumTitle} ({image.id})
+        </p>
+      ) : (
+        <p className="text">
+          {image.author} - {albumTitle} ({image.id})
+        </p>
+      )}
     </ImageTitleStyled>
   );
 };
@@ -22,13 +31,22 @@ const ImageTitleStyled = styled.section`
   align-items: center;
   justify-content: center;
 
-  p {
+  .text {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    flex-wrap: wrap;
     font-size: 0.8rem;
     position: relative;
+
+    a {
+      color: var(--mainColor);
+      transition: color 150ms ease-out;
+
+      &:hover {
+        color: var(--secondColor);
+      }
+    }
 
     @media screen and (min-width: 768px) {
       &::before,
