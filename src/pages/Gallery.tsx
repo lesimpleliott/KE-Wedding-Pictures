@@ -34,7 +34,7 @@ const Gallery = () => {
 
   useEffect(() => {
     // Vérifie s'il y a une image active dans Redux au chargement de la page
-    const storedState = localStorage.getItem("sliderState");
+    const storedState = sessionStorage.getItem("sliderState");
     if (storedState) {
       const { isOpen, imageID } = JSON.parse(storedState);
       if (isOpen && imageID) {
@@ -56,7 +56,7 @@ const Gallery = () => {
       <HeroBanner
         img={`${album.path}/display/${album.cover.cover}.avif`}
         imgAlign={album.cover.coverAlignment}
-        height="50vh"
+        height="50dvh"
       >
         <h1>{album.title}</h1>
       </HeroBanner>

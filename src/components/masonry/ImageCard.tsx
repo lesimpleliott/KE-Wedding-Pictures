@@ -59,13 +59,9 @@ const ImageCard: React.FC<ImageCardProps> = ({ image, rowHeight }) => {
     document.body.removeChild(link);
   };
 
-  // Ouvrir le slider avec l'image sélectionnée et sauvegarder dans localStorage
+  // Ouvrir le slider avec l'image sélectionnée
   const handleSliderOpen = () => {
     dispatch(openSlider({ imageID: image.id }));
-    localStorage.setItem(
-      "sliderState",
-      JSON.stringify({ isOpen: true, imageID: image.id })
-    );
   };
 
   return (

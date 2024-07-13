@@ -29,15 +29,25 @@ const Slider = () => {
     }
     return { album: null, image: null };
   };
+
   const { album, image } = findImageAndAlbumById(imageID);
   const [currentImage, setCurrentImage] = useState(image);
 
+  // Mettre à jour le localStorage
+  const updateSessionStorage = (imageID: number) => {
+    sessionStorage.setItem(
+      "sliderState",
+      JSON.stringify({ isOpen: true, imageID })
+    );
+  };
+
   useEffect(() => {
-    if (album) {
+    if (album && imageID) {
       const index = album.images.findIndex((img) => img.id === imageID);
       if (index !== -1) {
         setImageIndex(index);
         setCurrentImage(album.images[index]);
+        updateSessionStorage(imageID);
       }
     }
   }, [album, imageID]);
@@ -45,6 +55,7 @@ const Slider = () => {
   useEffect(() => {
     if (album) {
       setCurrentImage(album.images[imageIndex]);
+      updateSessionStorage(album.images[imageIndex].id);
     }
   }, [album, imageIndex]);
 
@@ -69,14 +80,20 @@ const Slider = () => {
   // Fonctions pour la navigation
   const handleNext = () => {
     if (album && imageIndex < album.images.length - 1) {
-      setImageIndex((prevIndex) => prevIndex + 1);
+      const newIndex = imageIndex + 1;
+      setImageIndex(newIndex);
+      updateSessionStorage(album.images[newIndex].id);
     }
   };
+
   const handlePrev = () => {
     if (album && imageIndex > 0) {
-      setImageIndex((prevIndex) => prevIndex - 1);
+      const newIndex = imageIndex - 1;
+      setImageIndex(newIndex);
+      updateSessionStorage(album.images[newIndex].id);
     }
   };
+
   const closeSlider = () => {
     dispatch(closeSliderAction());
   };
