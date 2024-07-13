@@ -6,7 +6,6 @@ import ActionButtons from "../components/slider/ActionButtons";
 import ImageContainer from "../components/slider/ImageContainer";
 import ImageTitle from "../components/slider/ImageTitle";
 import NavButtons from "../components/slider/NavButtons";
-
 import TipsBoxSlider from "../components/slider/Tipbox";
 import useKeyControls from "../hooks/useKeyControls";
 import useSwipeControls from "../hooks/useSwipeControls";
@@ -94,12 +93,24 @@ const Slider = () => {
     }
   };
 
+  const handleNextClick = () => {
+    setSwipeDisabled(true);
+    handleNext();
+    setTimeout(() => setSwipeDisabled(false), 500);
+  };
+
+  const handlePrevClick = () => {
+    setSwipeDisabled(true);
+    handlePrev();
+    setTimeout(() => setSwipeDisabled(false), 500);
+  };
+
   const closeSlider = () => {
     dispatch(closeSliderAction());
   };
 
   // Utilisation des hooks pour les contrôles de swipe et de clavier
-  useSwipeControls({
+  const { setSwipeDisabled } = useSwipeControls({
     handleNext,
     handlePrev,
     // closeSlider,
@@ -125,8 +136,8 @@ const Slider = () => {
       <NavButtons
         imageIndex={imageIndex}
         imagesLength={album.images.length}
-        handleNext={handleNext}
-        handlePrev={handlePrev}
+        handleNext={handleNextClick}
+        handlePrev={handlePrevClick}
       />
       <TipsBoxSlider />
     </SliderStyled>
