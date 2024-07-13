@@ -20,16 +20,16 @@ const LastSlide = ({ nextAlbum, downloadLink }: LastSlideProps) => {
     <LastSlideStyled>
       <h4>Fin de l'album... 😢</h4>
 
-      <a href={downloadLink} download className="button main">
-        Téléchargez l'album (zip)
-      </a>
       <NavLink
         to={`/gallery/${nextAlbum.id}`}
         onClick={closeSlider}
-        className="button"
+        className="button main"
       >
         Album suivant : {nextAlbum.title}
       </NavLink>
+      <a href={downloadLink} download className="button ">
+        Téléchargez l'album (zip)
+      </a>
       <NavLink
         to="/home#albumsContainer"
         onClick={closeSlider}
