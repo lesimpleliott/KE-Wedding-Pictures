@@ -25,7 +25,7 @@ const NavButtons = ({
 
       {/*  NEXT BUTTON */}
       <button
-        className={`next ${imageIndex === imagesLength - 1 ? "hidden" : ""}`}
+        className={`next ${imageIndex === imagesLength ? "hidden" : ""}`}
         onClick={handleNext}
       >
         <i className="fa-solid fa-chevron-right"></i>

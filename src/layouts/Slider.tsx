@@ -5,6 +5,7 @@ import data from "../assets/exportData.json";
 import ActionButtons from "../components/slider/ActionButtons";
 import ImageContainer from "../components/slider/ImageContainer";
 import ImageTitle from "../components/slider/ImageTitle";
+import LastSlide from "../components/slider/LastSlide";
 import NavButtons from "../components/slider/NavButtons";
 import TipsBoxSlider from "../components/slider/Tipbox";
 import useKeyControls from "../hooks/useKeyControls";
@@ -52,7 +53,7 @@ const Slider = () => {
   }, [album, imageID]);
 
   useEffect(() => {
-    if (album) {
+    if (album && imageIndex < album.images.length) {
       setCurrentImage(album.images[imageIndex]);
       updateSessionStorage(album.images[imageIndex].id);
     }
@@ -78,10 +79,11 @@ const Slider = () => {
 
   // Fonctions pour la navigation
   const handleNext = () => {
-    if (album && imageIndex < album.images.length - 1) {
+    if (album) {
       const newIndex = imageIndex + 1;
-      setImageIndex(newIndex);
-      updateSessionStorage(album.images[newIndex].id);
+      if (newIndex <= album.images.length) {
+        setImageIndex(newIndex);
+      }
     }
   };
 
@@ -125,10 +127,23 @@ const Slider = () => {
     closeSlider,
   });
 
+  // Trouver le prochain album
+  const nextAlbumIndex = data.findIndex((a) => a.title === album?.title) + 1;
+  const nextAlbum = data[nextAlbumIndex] || null;
+
   return album && currentImage ? (
     <SliderStyled>
-      <ImageContainer images={album.images} imageIndex={imageIndex} />
-      <ImageTitle image={currentImage} albumTitle={album.title} />
+      {imageIndex < album.images.length ? (
+        <>
+          <ImageContainer images={album.images} imageIndex={imageIndex} />
+          <ImageTitle image={currentImage} albumTitle={album.title} />
+        </>
+      ) : (
+        <LastSlide
+          nextAlbum={nextAlbum}
+          downloadLink={`${album.path}${album.zipFile}`}
+        />
+      )}
       <ActionButtons
         closeSlider={closeSlider}
         download={currentImage.path.hd}
