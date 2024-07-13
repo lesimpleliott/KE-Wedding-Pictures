@@ -117,7 +117,7 @@ const NavbarGalleryStyled = styled.nav`
       justify-content: center;
       align-items: center;
       position: absolute;
-      bottom: -40px;
+      bottom: -44px;
       z-index: 1;
       user-select: none;
 
@@ -125,7 +125,7 @@ const NavbarGalleryStyled = styled.nav`
       color: var(--mainColor);
       border-radius: 6px;
       white-space: nowrap;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
 
       visibility: hidden;
       opacity: 0;
@@ -134,10 +134,10 @@ const NavbarGalleryStyled = styled.nav`
       &::after {
         content: "";
         position: absolute;
+        z-index: 1000;
         top: -16px;
         left: 50%;
         transform: translateX(-50%);
-
         border-width: 8px;
         border-style: solid;
         border-color: transparent transparent rgb(200, 200, 200, 0.8)
@@ -147,7 +147,7 @@ const NavbarGalleryStyled = styled.nav`
 
     &:hover {
       background-color: var(--secondColor);
-      box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 
       .actionBtn__text {
         visibility: visible;
