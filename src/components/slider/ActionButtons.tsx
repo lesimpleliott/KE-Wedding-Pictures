@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 type ActionButtonsProps = {
   closeSlider: () => void;
-  download: string;
+  download?: string;
 };
 
 const ActionButtons = ({ closeSlider, download }: ActionButtonsProps) => {
@@ -12,9 +12,11 @@ const ActionButtons = ({ closeSlider, download }: ActionButtonsProps) => {
         <i className="fa-solid fa-xmark"></i>
       </button>
 
-      <a className="btn" download href={download}>
-        <i className="fa-solid fa-download"></i>
-      </a>
+      {download && (
+        <a className="btn" download href={download}>
+          <i className="fa-solid fa-download"></i>
+        </a>
+      )}
     </ActionButtonsStyled>
   );
 };

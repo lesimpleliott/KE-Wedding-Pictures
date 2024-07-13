@@ -138,17 +138,23 @@ const Slider = () => {
         <>
           <ImageContainer images={album.images} imageIndex={imageIndex} />
           <ImageTitle image={currentImage} albumTitle={album.title} />
+          <ActionButtons
+            closeSlider={closeSlider}
+            download={currentImage.path.hd}
+          />
         </>
       ) : (
-        <LastSlide
-          nextAlbum={nextAlbum}
-          downloadLink={`${album.path}${album.zipFile}`}
-        />
+        <>
+          <LastSlide
+            nextAlbum={nextAlbum}
+            downloadLink={`${album.path}${album.zipFile}`}
+          />
+          <ActionButtons
+            closeSlider={closeSlider}
+            // download={currentImage.path.hd}
+          />
+        </>
       )}
-      <ActionButtons
-        closeSlider={closeSlider}
-        download={currentImage.path.hd}
-      />
       <NavButtons
         imageIndex={imageIndex}
         imagesLength={album.images.length}
