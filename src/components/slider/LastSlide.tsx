@@ -17,27 +17,44 @@ const LastSlide = ({ nextAlbum, downloadLink }: LastSlideProps) => {
   };
 
   return (
-    <LastSlideStyled>
-      <h4>Fin de l'album... 😢</h4>
-
-      <NavLink
-        to={`/gallery/${nextAlbum.id}`}
-        onClick={closeSlider}
-        className="button main"
-      >
-        Album suivant : {nextAlbum.title}
-      </NavLink>
-      <a href={downloadLink} download className="button ">
-        Téléchargez l'album (zip)
-      </a>
-      <NavLink
-        to="/home#albumsContainer"
-        onClick={closeSlider}
-        className="button"
-      >
-        Retour à l'accueil
-      </NavLink>
-    </LastSlideStyled>
+    <>
+      {nextAlbum ? (
+        <LastSlideStyled>
+          <h4>Fin de l'album... 😢</h4>
+          <NavLink
+            to={`/gallery/${nextAlbum.id}`}
+            onClick={closeSlider}
+            className="button main"
+          >
+            Album suivant : {nextAlbum.title}
+          </NavLink>
+          <a href={downloadLink} download className="button ">
+            Téléchargez l'album (zip)
+          </a>
+          <NavLink
+            to="/home#albumsContainer"
+            onClick={closeSlider}
+            className="button"
+          >
+            Retour à l'accueil
+          </NavLink>
+        </LastSlideStyled>
+      ) : (
+        <LastSlideStyled>
+          <h4>C'est vraiment la fin... 😭</h4>
+          <NavLink
+            to="/home#albumsContainer"
+            onClick={closeSlider}
+            className="button main"
+          >
+            Retour à l'accueil
+          </NavLink>
+          <a href={downloadLink} download className="button ">
+            Téléchargez l'album (zip)
+          </a>
+        </LastSlideStyled>
+      )}
+    </>
   );
 };
 
