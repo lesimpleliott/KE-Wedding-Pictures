@@ -21,6 +21,10 @@ const AlbumsGalleryStyled = styled.section`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   column-gap: 2vw;
   row-gap: clamp(2vw, 20px, 5vw);
+
+  @media screen and (max-width: 350px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 `;
 
 export default AlbumsGallery;
