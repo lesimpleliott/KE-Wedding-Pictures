@@ -916,7 +916,7 @@ Error generating stack: `+r.message+`
   @media screen and (max-width: 350px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-`,jM=()=>{const e=wo(),i=Yi();v.useEffect(()=>{window.scrollTo(0,0)},[]),v.useEffect(()=>{i(uh())},[i]),v.useEffect(()=>{if(e.hash){const a=e.hash.substring(1),t=document.getElementById(a);t&&(t.scrollIntoView({behavior:"smooth"}),window.history.replaceState(null,"",e.pathname))}},[e]);const o=()=>{const a=document.getElementById("albumsContainer");a&&(a.scrollIntoView({behavior:"smooth"}),window.history.replaceState(null,"",e.pathname))};return M.jsxs(zM,{children:[M.jsxs(wu,{img:"./KE_mainCover.avif",imgAlign:"70%",children:[M.jsx("div",{className:"banner",children:M.jsx("img",{src:"./logos/LogoKE_WhitePink_V2_RVB.svg",alt:"Logo Katherine & Eliott"})}),M.jsx(vM,{onClick:o,className:"fa-solid fa-angles-down"})]}),M.jsx(RM,{})]})},zM=L.main`
+`,jM=()=>{const e=wo(),i=Yi();v.useEffect(()=>{window.scrollTo(0,0)},[]),v.useEffect(()=>{i(uh()),sessionStorage.removeItem("sliderState")},[i]),v.useEffect(()=>{if(e.hash){const a=e.hash.substring(1),t=document.getElementById(a);t&&(t.scrollIntoView({behavior:"smooth"}),window.history.replaceState(null,"",e.pathname))}},[e]);const o=()=>{const a=document.getElementById("albumsContainer");a&&(a.scrollIntoView({behavior:"smooth"}),window.history.replaceState(null,"",e.pathname))};return M.jsxs(zM,{children:[M.jsxs(wu,{img:"./KE_mainCover.avif",imgAlign:"70%",children:[M.jsx("div",{className:"banner",children:M.jsx("img",{src:"./logos/LogoKE_WhitePink_V2_RVB.svg",alt:"Logo Katherine & Eliott"})}),M.jsx(vM,{onClick:o,className:"fa-solid fa-angles-down"})]}),M.jsx(RM,{})]})},zM=L.main`
   scroll-behavior: smooth;
 
   .banner {
