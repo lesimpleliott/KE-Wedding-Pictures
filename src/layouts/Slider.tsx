@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import data from "../assets/exportData.json";
-import NavButtonSlider from "../components/buttons/NavButtonSlider";
 import ActionContainer from "../components/slider/ActionContainer";
 import ImageContainer from "../components/slider/ImageContainer";
 import ImageTitle from "../components/slider/ImageTitle";
 import LastSlide from "../components/slider/LastSlide";
+import NavContainer from "../components/slider/NavContainer";
 import TipsBoxSlider from "../components/slider/Tipbox";
-import useKeyControls from "../hooks/useKeyControls";
-import useSwipeControls from "../hooks/useSwipeControls";
 import { closeSlider as closeSliderAction } from "../redux/slider.slice";
 import { RootState } from "../store";
 
@@ -77,56 +75,11 @@ const Slider = () => {
     };
   }, [sliderIsOpen]);
 
-  // Fonctions pour la navigation
-  const handleNext = () => {
-    if (album) {
-      const newIndex = imageIndex + 1;
-      if (newIndex <= album.images.length) {
-        setImageIndex(newIndex);
-      }
-    }
-  };
-
-  const handlePrev = () => {
-    if (album && imageIndex > 0) {
-      const newIndex = imageIndex - 1;
-      setImageIndex(newIndex);
-      updateSessionStorage(album.images[newIndex].id);
-    }
-  };
-
-  const handleNextClick = () => {
-    setSwipeDisabled(true);
-    handleNext();
-    setTimeout(() => setSwipeDisabled(false), 500);
-  };
-
-  const handlePrevClick = () => {
-    setSwipeDisabled(true);
-    handlePrev();
-    setTimeout(() => setSwipeDisabled(false), 500);
-  };
-
+  // Fermer le slider
   const closeSlider = () => {
     dispatch(closeSliderAction());
     sessionStorage.removeItem("sliderState");
   };
-
-  // Utilisation des hooks pour les contrôles de swipe et de clavier
-  const { setSwipeDisabled } = useSwipeControls({
-    handleNext,
-    handlePrev,
-    // closeSlider,
-    // verticalSensitivity: 100,
-    horizontalSensitivity: 75,
-    maxSwipeDistance: 300,
-  });
-
-  useKeyControls({
-    handleNext,
-    handlePrev,
-    closeSlider,
-  });
 
   // Trouver le prochain album
   const nextAlbumIndex = data.findIndex((a) => a.title === album?.title) + 1;
@@ -153,17 +106,15 @@ const Slider = () => {
         </>
       )}
 
-      <NavButtonSlider
-        icon="fa-solid fa-arrow-left"
-        onClick={handlePrevClick}
-        position="left"
+      <NavContainer
+        // handleNext={handleNext}
+        // handlePrev={handlePrev}
+        setImageIndex={setImageIndex}
+        updateSessionStorage={updateSessionStorage}
+        album={album}
+        imageIndex={imageIndex}
+        closeSlider={closeSlider}
       />
-      <NavButtonSlider
-        icon="fa-solid fa-arrow-right"
-        onClick={handleNextClick}
-        position="right"
-      />
-
       <TipsBoxSlider />
     </SliderStyled>
   ) : null;
@@ -186,17 +137,6 @@ const SliderStyled = styled.aside`
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   animation: sliderIN 200ms ease-out;
-
-  .navContainer {
-    border: solid deeppink 1px;
-    width: 100%;
-    padding-inline: 1rem;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
 `;
 
 export default Slider;

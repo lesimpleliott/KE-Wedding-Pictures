@@ -8,7 +8,7 @@ type NavButtonSliderProps = {
 
 const NavButtonSlider = ({ icon, position, onClick }: NavButtonSliderProps) => {
   return (
-    <NavButtonSliderStyled position={position} onClick={onClick}>
+    <NavButtonSliderStyled $position={position} onClick={onClick}>
       <button className="button">
         <i className={icon}></i>
       </button>
@@ -16,13 +16,15 @@ const NavButtonSlider = ({ icon, position, onClick }: NavButtonSliderProps) => {
   );
 };
 
-const NavButtonSliderStyled = styled.div<{ position: "left" | "right" }>`
+const NavButtonSliderStyled = styled.div<{ $position: "left" | "right" }>`
   --transitionTime: 300ms;
 
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   margin: 1rem;
   z-index: 10;
-  ${({ position }) => (position === "left" ? "left: 0;" : "right: 0;")}
+  ${({ $position }) => ($position === "left" ? "left: 0;" : "right: 0;")}
 
   .button {
     width: 40px;
@@ -56,5 +58,4 @@ const NavButtonSliderStyled = styled.div<{ position: "left" | "right" }>`
     }
   }
 `;
-
 export default NavButtonSlider;
