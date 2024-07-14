@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -15,6 +16,15 @@ const LastSlide = ({ nextAlbum, downloadZip }: LastSlideProps) => {
     dispatch(closeSliderAction());
     sessionStorage.removeItem("sliderState");
   };
+
+  useEffect(() => {
+    return () => {
+      sessionStorage.setItem(
+        "sliderState",
+        JSON.stringify({ isOpen: false, imageID: null })
+      );
+    };
+  }, []);
 
   return (
     <>

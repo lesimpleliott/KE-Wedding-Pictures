@@ -61,6 +61,8 @@ const NavContainer = ({
     closeSlider,
   });
 
+  const isLastSlide = album ? imageIndex === album.images.length : false;
+
   return (
     <NavContainerStyled>
       <NavButtonSlider
@@ -68,11 +70,13 @@ const NavContainer = ({
         onClick={handlePrevClick}
         position="left"
       />
-      <NavButtonSlider
-        icon="fa-solid fa-arrow-right"
-        onClick={handleNextClick}
-        position="right"
-      />
+      {!isLastSlide && (
+        <NavButtonSlider
+          icon="fa-solid fa-arrow-right"
+          onClick={handleNextClick}
+          position="right"
+        />
+      )}
     </NavContainerStyled>
   );
 };
