@@ -10,6 +10,7 @@ type ImageContainerProps = {
 const ImageContainer = ({ images, imageIndex }: ImageContainerProps) => {
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
   const [loadedIndices, setLoadedIndices] = useState<number[]>([]);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
     const currentImageRefs = imageRefs.current;
@@ -39,12 +40,18 @@ const ImageContainer = ({ images, imageIndex }: ImageContainerProps) => {
       }
     });
 
+    // Définir un délai avant d'activer la transition
+    const timeout = setTimeout(() => {
+      setShouldAnimate(true);
+    }, 1000);
+
     return () => {
       currentImageRefs.forEach((img) => {
         if (img) {
           observer.unobserve(img);
         }
       });
+      clearTimeout(timeout); // Nettoyage du timeout si le composant se démonte avant la fin du délai
     };
   }, [images, imageIndex]);
 
@@ -67,7 +74,10 @@ const ImageContainer = ({ images, imageIndex }: ImageContainerProps) => {
           data-index={index}
           ref={(el) => (imageRefs.current[index] = el)}
           loading={shouldPreload(index) ? "eager" : "lazy"}
-          style={{ transform: `translateX(${-100 * imageIndex}%)` }}
+          style={{
+            transform: `translateX(${-100 * imageIndex}%)`,
+            transition: shouldAnimate ? "transform 300ms ease-in-out" : "none",
+          }}
         />
       ))}
     </ImageContainerStyled>
@@ -76,7 +86,6 @@ const ImageContainer = ({ images, imageIndex }: ImageContainerProps) => {
 
 const ImageContainerStyled = styled.div`
   width: 100%;
-  /* height: 100%; */
   overflow: hidden;
   display: flex;
 
@@ -84,7 +93,6 @@ const ImageContainerStyled = styled.div`
     min-width: 100%;
     height: 100%;
     object-fit: contain;
-    /* transition: transform 3000ms ease-in-out; */
   }
 `;
 
