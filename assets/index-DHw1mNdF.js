@@ -485,9 +485,8 @@ Error generating stack: `+r.message+`
   position: absolute;
   top: 1rem;
   right: 1rem;
-`,p2=({images:e,imageIndex:i})=>{const o=v.useRef([]),[a,t]=v.useState([]);v.useEffect(()=>{const h=o.current,s=new IntersectionObserver(n=>{n.forEach(p=>{if(p.isIntersecting){const l=parseInt(p.target.getAttribute("data-index"),10);t(d=>[...new Set([...d,l])]),s.unobserve(p.target)}})},{rootMargin:"0px 0px 200px 0px",threshold:.1});return h.forEach(n=>{n&&s.observe(n)}),()=>{h.forEach(n=>{n&&s.unobserve(n)})}},[e,i]);const r=h=>{const s=Math.abs(h-i);return s<=3||s>=e.length-3};return m.jsx(l2,{children:e.map((h,s)=>m.jsx("img",{src:a.includes(s)||r(s)?h.path.display:"",alt:h.filename,"data-index":s,ref:n=>o.current[s]=n,loading:r(s)?"eager":"lazy",style:{transform:`translateX(${-100*i}%)`}},h.id.toString()))})},l2=L.div`
+`,p2=({images:e,imageIndex:i})=>{const o=v.useRef([]),[a,t]=v.useState([]),[r,h]=v.useState(!1);v.useEffect(()=>{const n=o.current,p=new IntersectionObserver(d=>{d.forEach(u=>{if(u.isIntersecting){const E=parseInt(u.target.getAttribute("data-index"),10);t(f=>[...new Set([...f,E])]),p.unobserve(u.target)}})},{rootMargin:"0px 0px 200px 0px",threshold:.1});n.forEach(d=>{d&&p.observe(d)});const l=setTimeout(()=>{h(!0)},1e3);return()=>{n.forEach(d=>{d&&p.unobserve(d)}),clearTimeout(l)}},[e,i]);const s=n=>{const p=Math.abs(n-i);return p<=3||p>=e.length-3};return m.jsx(l2,{children:e.map((n,p)=>m.jsx("img",{src:a.includes(p)||s(p)?n.path.display:"",alt:n.filename,"data-index":p,ref:l=>o.current[p]=l,loading:s(p)?"eager":"lazy",style:{transform:`translateX(${-100*i}%)`,transition:r?"transform 300ms ease-in-out":"none"}},n.id.toString()))})},l2=L.div`
   width: 100%;
-  /* height: 100%; */
   overflow: hidden;
   display: flex;
 
@@ -495,7 +494,6 @@ Error generating stack: `+r.message+`
     min-width: 100%;
     height: 100%;
     object-fit: contain;
-    /* transition: transform 3000ms ease-in-out; */
   }
 `,d2=({image:e,albumTitle:i})=>m.jsx(_2,{children:e.author==="Fabrice Joubert Photographe"?m.jsxs("p",{className:"text",children:[m.jsx("a",{href:"https://fabricejoubert.fr/",target:"_blank",rel:"noreferrer",children:e.author})," - ",i," (",e.id,")"]}):m.jsxs("p",{className:"text",children:[e.author," - ",i," (",e.id,")"]})}),_2=L.section`
   width: 100%;
