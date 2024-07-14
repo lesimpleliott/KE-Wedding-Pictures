@@ -13,8 +13,8 @@ const ImageTitle = ({ image, albumTitle }: ImageTitleProps) => {
         <p className="text">
           <a href="https://fabricejoubert.fr/" target="_blank" rel="noreferrer">
             {image.author}
-          </a>{" "}
-          - {albumTitle} ({image.id})
+          </a>
+          &nbsp;- {albumTitle} ({image.id})
         </p>
       ) : (
         <p className="text">
