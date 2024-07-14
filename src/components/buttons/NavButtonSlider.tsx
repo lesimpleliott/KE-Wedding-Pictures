@@ -21,14 +21,14 @@ const NavButtonSliderStyled = styled.div<{ $position: "left" | "right" }>`
 
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-100%);
   margin: 1rem;
   z-index: 10;
   ${({ $position }) => ($position === "left" ? "left: 0;" : "right: 0;")}
 
   .button {
-    width: 40px;
-    height: 40px;
+    width: clamp(25px, 5vw, 40px);
+    height: clamp(25px, 5vw, 40px);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -44,7 +44,7 @@ const NavButtonSliderStyled = styled.div<{ $position: "left" | "right" }>`
 
     // ICON STYLE
     i {
-      font-size: 20px;
+      font-size: clamp(14px, 3vw, 20px);
       color: grey;
       transition-duration: var(--transitionTime);
     }
