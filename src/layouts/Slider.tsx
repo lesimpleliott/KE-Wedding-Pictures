@@ -175,7 +175,7 @@ const Slider = () => {
         <>
           <LastSlide
             nextAlbum={nextAlbum}
-            downloadLink={`${album.path}${album.zipFile}`}
+            downloadZip={`${album.path}${album.zipFile}`}
           />
           <div className="actionContainer">
             <ActionButton

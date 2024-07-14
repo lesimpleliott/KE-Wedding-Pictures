@@ -6,10 +6,10 @@ import { AlbumType } from "../../types/albumType";
 
 type LastSlideProps = {
   nextAlbum: AlbumType;
-  downloadLink: string;
+  downloadZip: string;
 };
 
-const LastSlide = ({ nextAlbum, downloadLink }: LastSlideProps) => {
+const LastSlide = ({ nextAlbum, downloadZip }: LastSlideProps) => {
   const dispatch = useDispatch();
   const closeSlider = () => {
     dispatch(closeSliderAction());
@@ -28,7 +28,7 @@ const LastSlide = ({ nextAlbum, downloadLink }: LastSlideProps) => {
           >
             Album suivant : {nextAlbum.title}
           </NavLink>
-          <a href={downloadLink} download className="button ">
+          <a href={downloadZip} download className="button ">
             Téléchargez l'album (zip)
           </a>
           <NavLink
@@ -49,7 +49,7 @@ const LastSlide = ({ nextAlbum, downloadLink }: LastSlideProps) => {
           >
             Retour à l'accueil
           </NavLink>
-          <a href={downloadLink} download className="button ">
+          <a href={downloadZip} download className="button ">
             Téléchargez l'album (zip)
           </a>
         </LastSlideStyled>
