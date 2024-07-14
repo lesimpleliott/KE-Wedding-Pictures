@@ -4,6 +4,7 @@ const Footer = () => {
   return (
     <FooterStyled>
       <p>© Made by Katelio with ❤️ and lots of ☕️</p>
+
       <p>
         Photos par{" "}
         <a href="https://fabricejoubert.fr/" target="_blank" rel="noreferrer">
@@ -20,16 +21,19 @@ const Footer = () => {
 };
 
 const FooterStyled = styled.footer`
-  margin-top: 25px;
-  padding: 15px;
-  text-align: center;
   width: 100%;
+  height: 100px;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: var(--mainColor-opacity);
-  line-height: 1.6;
+  line-height: 1.5;
 
   p {
     color: white;
-    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-size: clamp(0.8rem, 1vw, 1rem);
   }
 
   a {
