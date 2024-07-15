@@ -40,6 +40,7 @@ const NavContainer = ({
   useSwipeControls({
     handleNext,
     handlePrev,
+    closeSlider,
     sensitivityX: 75, // valeur par défaut 100(px)
   });
 

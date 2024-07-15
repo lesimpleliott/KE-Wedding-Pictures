@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 type SwipeControlsProps = {
   handleNext: () => void;
   handlePrev: () => void;
+  closeSlider?: () => void;
   sensitivityY?: number;
   sensitivityX?: number;
   maxSwipeDistance?: number;
@@ -11,7 +12,8 @@ type SwipeControlsProps = {
 const useSwipeControls = ({
   handleNext,
   handlePrev,
-  sensitivityY = 100 /* Valeur par défaut */,
+  closeSlider,
+  sensitivityY = 200 /* Valeur par défaut */,
   sensitivityX = 100 /* Valeur par défaut */,
   maxSwipeDistance = 300 /* Valeur par défaut */,
 }: SwipeControlsProps) => {
@@ -40,11 +42,12 @@ const useSwipeControls = ({
       const distanceX = Math.abs(touchStartX.current - touchEndX.current);
       const distanceY = Math.abs(touchStartY.current - touchEndY.current);
 
-      console.log("-----------------");
-      console.log("horizontal", distanceX);
-      console.log("vertical", distanceY);
-      console.log("timeElapsed", timeElapsed);
+      // console.log("-----------------");
+      // console.log("horizontal", distanceX);
+      // console.log("vertical", distanceY);
+      // console.log("timeElapsed", timeElapsed);
 
+      // Gestion du swipe horizontal (X)
       if (
         distanceX >= sensitivityX &&
         distanceX < maxSwipeDistance &&
@@ -52,14 +55,20 @@ const useSwipeControls = ({
         timeElapsed > 100 // Vérifie que ce n'est pas un tap rapide (100ms)
       ) {
         if (touchEndX.current - touchStartX.current > 0) {
-          console.log("swipe droite");
+          // console.log("swipe droite");
           handlePrev(); // Swipe vers la droite
         } else {
-          console.log("swipe gauche");
+          // console.log("swipe gauche");
           handleNext(); // Swipe vers la gauche
         }
       } else if (timeElapsed <= 100) {
-        console.log("tap détecté, aucune action");
+        // console.log("tap détecté, aucune action");
+      }
+
+      // Gestion du swipe vertical (Y)
+      if (distanceY >= sensitivityY && distanceY > distanceX) {
+        // console.log("swipe vertical détecté");
+        closeSlider && closeSlider();
       }
     };
 
@@ -72,7 +81,14 @@ const useSwipeControls = ({
       document.removeEventListener("touchmove", handleTouchMove);
       document.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [handleNext, handlePrev, sensitivityX, sensitivityY, maxSwipeDistance]);
+  }, [
+    handleNext,
+    handlePrev,
+    closeSlider,
+    sensitivityX,
+    sensitivityY,
+    maxSwipeDistance,
+  ]);
 };
 
 export default useSwipeControls;
