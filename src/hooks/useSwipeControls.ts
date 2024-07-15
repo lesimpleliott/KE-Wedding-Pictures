@@ -23,15 +23,21 @@ const useSwipeControls = ({
   const touchEndY = useRef(0);
   const touchStartTime = useRef(0);
   const touchEndTime = useRef(0);
+  const pinchDetected = useRef(false);
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
+      pinchDetected.current = false;
       touchStartX.current = e.changedTouches[0].screenX;
       touchStartY.current = e.changedTouches[0].screenY;
       touchStartTime.current = e.timeStamp;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length >= 2) {
+        // Si plus de deux touches, potentiellement un pinch
+        pinchDetected.current = true;
+      }
       touchEndX.current = e.changedTouches[0].screenX;
       touchEndY.current = e.changedTouches[0].screenY;
     };
@@ -48,27 +54,29 @@ const useSwipeControls = ({
       // console.log("timeElapsed", timeElapsed);
 
       // Gestion du swipe horizontal (X)
-      if (
-        distanceX >= sensitivityX &&
-        distanceX < maxSwipeDistance &&
-        distanceY < sensitivityY &&
-        timeElapsed > 100 // Vérifie que ce n'est pas un tap rapide (100ms)
-      ) {
-        if (touchEndX.current - touchStartX.current > 0) {
-          // console.log("swipe droite");
-          handlePrev(); // Swipe vers la droite
-        } else {
-          // console.log("swipe gauche");
-          handleNext(); // Swipe vers la gauche
+      if (!pinchDetected.current) {
+        if (
+          distanceX >= sensitivityX &&
+          distanceX < maxSwipeDistance &&
+          distanceY < sensitivityY &&
+          timeElapsed > 100 // Vérifie que ce n'est pas un tap rapide (100ms)
+        ) {
+          if (touchEndX.current - touchStartX.current > 0) {
+            // console.log("swipe droite");
+            handlePrev(); // Swipe vers la droite
+          } else {
+            // console.log("swipe gauche");
+            handleNext(); // Swipe vers la gauche
+          }
+        } else if (timeElapsed <= 100) {
+          // console.log("tap détecté, aucune action");
         }
-      } else if (timeElapsed <= 100) {
-        // console.log("tap détecté, aucune action");
-      }
 
-      // Gestion du swipe vertical (Y)
-      if (distanceY >= sensitivityY && distanceY > distanceX) {
-        // console.log("swipe vertical détecté");
-        closeSlider && closeSlider();
+        // Gestion du swipe vertical (Y)
+        if (distanceY >= sensitivityY && distanceY > distanceX) {
+          // console.log("swipe vertical détecté");
+          closeSlider && closeSlider();
+        }
       }
     };
 
