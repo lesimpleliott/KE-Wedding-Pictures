@@ -55,6 +55,7 @@ const ActionContainerStyled = styled.div`
   position: absolute;
   top: 1rem;
   right: 1rem;
+  z-index: 100;
 `;
 
 export default ActionContainer;

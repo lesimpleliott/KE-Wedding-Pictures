@@ -27,6 +27,7 @@ const ImageTitle = ({ image, albumTitle }: ImageTitleProps) => {
 
 const ImageTitleStyled = styled.section`
   width: 100%;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -86,12 +86,14 @@ const ImageContainer = ({ images, imageIndex }: ImageContainerProps) => {
 
 const ImageContainerStyled = styled.div`
   width: 100%;
+  height: 100%;
+  padding-block: 1rem;
   overflow: hidden;
   display: flex;
 
   img {
     min-width: 100%;
-    height: 100%;
+    min-height: 100%;
     object-fit: contain;
   }
 `;

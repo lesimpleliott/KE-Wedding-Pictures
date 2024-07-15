@@ -120,21 +120,17 @@ const Slider = () => {
 
 const SliderStyled = styled.aside`
   width: 100%;
-  height: 100vh;
-  max-height: 100dvh;
-  padding-block-start: 1rem;
+  height: 100dvh;
   position: fixed;
   z-index: 50;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  //overflow: auto; // Permet le zoom sur le contenu
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  animation: sliderIN 200ms ease-out;
+  animation: sliderIn 200ms ease-out;
 `;
 
 export default Slider;
