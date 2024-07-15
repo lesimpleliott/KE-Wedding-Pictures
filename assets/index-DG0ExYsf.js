@@ -582,6 +582,7 @@ Error generating stack: `+r.message+`
   }
 `,u2=({handleNext:e,handlePrev:i,closeSlider:o})=>{v.useEffect(()=>{const a=t=>{t.key==="ArrowRight"?e():t.key==="ArrowLeft"?i():t.key==="Escape"&&o()};return document.addEventListener("keydown",a),()=>{document.removeEventListener("keydown",a)}},[e,i,o])},g2=({handleNext:e,handlePrev:i,sensitivityY:o=100,sensitivityX:a=100,maxSwipeDistance:t=300})=>{const r=v.useRef(0),h=v.useRef(0),s=v.useRef(0),n=v.useRef(0),p=v.useRef(0),l=v.useRef(0);v.useEffect(()=>{const d=f=>{r.current=f.changedTouches[0].screenX,s.current=f.changedTouches[0].screenY,p.current=f.timeStamp},u=f=>{h.current=f.changedTouches[0].screenX,n.current=f.changedTouches[0].screenY},E=f=>{l.current=f.timeStamp;const y=l.current-p.current,K=Math.abs(r.current-h.current),g=Math.abs(s.current-n.current);console.log("-----------------"),console.log("horizontal",K),console.log("vertical",g),console.log("timeElapsed",y),K>=a&&K<t&&g<o&&y>100?h.current-r.current>0?(console.log("swipe droite"),i()):(console.log("swipe gauche"),e()):y<=100&&console.log("tap détecté, aucune action")};return document.addEventListener("touchstart",d),document.addEventListener("touchmove",u),document.addEventListener("touchend",E),()=>{document.removeEventListener("touchstart",d),document.removeEventListener("touchmove",u),document.removeEventListener("touchend",E)}},[e,i,a,o,t])},pd=({icon:e,position:i,onClick:o})=>m.jsx(f2,{$position:i,onClick:o,children:m.jsx("button",{className:"button",children:m.jsx("i",{className:e})})}),f2=L.div`
   --transitionTime: 300ms;
+
   ${({$position:e})=>e==="left"?"--gradientDirection: -90deg;":"--gradientDirection: 90deg;"}
 
   height: calc(100% - 50px);
@@ -623,6 +624,8 @@ Error generating stack: `+r.message+`
     background-color: rgba(222, 222, 222, 0.5);
     box-shadow: 0px 0px 0px 4px rgba(222, 222, 222, 0.2),
       0px 0px 20px rgba(70, 70, 70, 0.2);
+    transition: transform var(--transitionTime),
+      background-color var(--transitionTime), box-shadow var(--transitionTime);
 
     // ICON STYLE
     i {
