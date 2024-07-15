@@ -265,7 +265,8 @@ Error generating stack: `+r.message+`
   top: 0;
   z-index: 10;
   background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
   display: flex;
   align-items: center;
@@ -485,18 +486,22 @@ Error generating stack: `+r.message+`
   position: absolute;
   top: 1rem;
   right: 1rem;
-`,p2=({images:e,imageIndex:i})=>{const o=v.useRef([]),[a,t]=v.useState([]),[r,h]=v.useState(!1);v.useEffect(()=>{const n=o.current,p=new IntersectionObserver(d=>{d.forEach(u=>{if(u.isIntersecting){const E=parseInt(u.target.getAttribute("data-index"),10);t(f=>[...new Set([...f,E])]),p.unobserve(u.target)}})},{rootMargin:"0px 0px 200px 0px",threshold:.1});n.forEach(d=>{d&&p.observe(d)});const l=setTimeout(()=>{h(!0)},1e3);return()=>{n.forEach(d=>{d&&p.unobserve(d)}),clearTimeout(l)}},[e,i]);const s=n=>{const p=Math.abs(n-i);return p<=3||p>=e.length-3};return m.jsx(l2,{children:e.map((n,p)=>m.jsx("img",{src:a.includes(p)||s(p)?n.path.display:"",alt:n.filename,"data-index":p,ref:l=>o.current[p]=l,loading:s(p)?"eager":"lazy",style:{transform:`translateX(${-100*i}%)`,transition:r?"transform 300ms ease-in-out":"none"}},n.id.toString()))})},l2=L.div`
+  z-index: 100;
+`,p2=({images:e,imageIndex:i})=>{const o=v.useRef([]),[a,t]=v.useState([]),[r,h]=v.useState(!1);v.useEffect(()=>{const n=o.current,p=new IntersectionObserver(d=>{d.forEach(u=>{if(u.isIntersecting){const E=parseInt(u.target.getAttribute("data-index"),10);t(f=>[...new Set([...f,E])]),p.unobserve(u.target)}})},{rootMargin:"0px 0px 200px 0px",threshold:.1});n.forEach(d=>{d&&p.observe(d)});const l=setTimeout(()=>{h(!0)},100);return()=>{n.forEach(d=>{d&&p.unobserve(d)}),clearTimeout(l)}},[e,i]);const s=n=>{const p=Math.abs(n-i);return p<=3||p>=e.length-3};return m.jsx(l2,{children:e.map((n,p)=>m.jsx("img",{src:a.includes(p)||s(p)?n.path.display:"",alt:n.filename,"data-index":p,ref:l=>o.current[p]=l,loading:s(p)?"eager":"lazy",style:{transform:`translateX(${-100*i}%)`,transition:r?"transform 300ms ease-in-out":"none"}},n.id.toString()))})},l2=L.div`
   width: 100%;
+  height: 100%;
+  padding-block: 1rem;
   overflow: hidden;
   display: flex;
 
   img {
     min-width: 100%;
-    height: 100%;
+    min-height: 100%;
     object-fit: contain;
   }
 `,d2=({image:e,albumTitle:i})=>m.jsx(_2,{children:e.author==="Fabrice Joubert Photographe"?m.jsxs("p",{className:"text",children:[m.jsx("a",{href:"https://fabricejoubert.fr/",target:"_blank",rel:"noreferrer",children:e.author})," - ",i," (",e.id,")"]}):m.jsxs("p",{className:"text",children:[e.author," - ",i," (",e.id,")"]})}),_2=L.section`
   width: 100%;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -575,19 +580,41 @@ Error generating stack: `+r.message+`
       border: solid 2px transparent;
     }
   }
-`,u2=({handleNext:e,handlePrev:i,closeSlider:o})=>{v.useEffect(()=>{const a=t=>{t.key==="ArrowRight"?e():t.key==="ArrowLeft"?i():t.key==="Escape"&&o()};return document.addEventListener("keydown",a),()=>{document.removeEventListener("keydown",a)}},[e,i,o])},g2=({handleNext:e,handlePrev:i,closeSlider:o,horizontalSensitivity:a,verticalSensitivity:t=150,maxSwipeDistance:r})=>{const h=v.useRef(0),s=v.useRef(0),n=v.useRef(0),p=v.useRef(0),[l,d]=v.useState(!1);return v.useEffect(()=>{const u=y=>{l||(h.current=y.changedTouches[0].screenX,n.current=y.changedTouches[0].screenY)},E=y=>{l||(s.current=y.changedTouches[0].screenX,p.current=y.changedTouches[0].screenY)},f=()=>{if(!l){const y=Math.abs(h.current-s.current),K=Math.abs(n.current-p.current);y>a&&y<r&&(s.current-h.current>0?i():e()),K>t&&K<r&&p.current-n.current>0&&o&&o()}};return document.addEventListener("touchstart",u),document.addEventListener("touchmove",E),document.addEventListener("touchend",f),()=>{document.removeEventListener("touchstart",u),document.removeEventListener("touchmove",E),document.removeEventListener("touchend",f)}},[e,i,o,l,a,t,r]),{setSwipeDisabled:d}},pd=({icon:e,position:i,onClick:o})=>m.jsx(f2,{$position:i,onClick:o,children:m.jsx("button",{className:"button",children:m.jsx("i",{className:e})})}),f2=L.div`
+`,u2=({handleNext:e,handlePrev:i,closeSlider:o})=>{v.useEffect(()=>{const a=t=>{t.key==="ArrowRight"?e():t.key==="ArrowLeft"?i():t.key==="Escape"&&o()};return document.addEventListener("keydown",a),()=>{document.removeEventListener("keydown",a)}},[e,i,o])},g2=({handleNext:e,handlePrev:i,sensitivityY:o=100,sensitivityX:a=100,maxSwipeDistance:t=300})=>{const r=v.useRef(0),h=v.useRef(0),s=v.useRef(0),n=v.useRef(0),p=v.useRef(0),l=v.useRef(0);v.useEffect(()=>{const d=f=>{r.current=f.changedTouches[0].screenX,s.current=f.changedTouches[0].screenY,p.current=f.timeStamp},u=f=>{h.current=f.changedTouches[0].screenX,n.current=f.changedTouches[0].screenY},E=f=>{l.current=f.timeStamp;const y=l.current-p.current,K=Math.abs(r.current-h.current),g=Math.abs(s.current-n.current);console.log("-----------------"),console.log("horizontal",K),console.log("vertical",g),console.log("timeElapsed",y),K>=a&&K<t&&g<o&&y>100?h.current-r.current>0?(console.log("swipe droite"),i()):(console.log("swipe gauche"),e()):y<=100&&console.log("tap détecté, aucune action")};return document.addEventListener("touchstart",d),document.addEventListener("touchmove",u),document.addEventListener("touchend",E),()=>{document.removeEventListener("touchstart",d),document.removeEventListener("touchmove",u),document.removeEventListener("touchend",E)}},[e,i,a,o,t])},pd=({icon:e,position:i,onClick:o})=>m.jsx(f2,{$position:i,onClick:o,children:m.jsx("button",{className:"button",children:m.jsx("i",{className:e})})}),f2=L.div`
   --transitionTime: 300ms;
+  ${({$position:e})=>e==="left"?"--gradientDirection: -90deg;":"--gradientDirection: 90deg;"}
 
+  height: calc(100% - 50px);
+  top: 0;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
   position: absolute;
-  top: 50%;
-  transform: translateY(-100%);
-  margin: 1rem;
   z-index: 10;
   ${({$position:e})=>e==="left"?"left: 0;":"right: 0;"}
 
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    background: linear-gradient(
+      var(--gradientDirection),
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 30%,
+      rgba(222, 222, 222, 0.7) 100%
+    );
+  }
+
+  &:active::before,
+  &:hover::before {
+    animation: fadeNavbutton 2000ms;
+  }
+
   .button {
-    width: clamp(25px, 5vw, 40px);
-    height: clamp(25px, 5vw, 40px);
+    width: clamp(30px, 5vw, 40px);
+    height: clamp(30px, 5vw, 40px);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -597,15 +624,11 @@ Error generating stack: `+r.message+`
     box-shadow: 0px 0px 0px 4px rgba(222, 222, 222, 0.2),
       0px 0px 20px rgba(70, 70, 70, 0.2);
 
-    transition: border-radius var(--transitionTime),
-      background-color var(--transitionTime), box-shadow var(--transitionTime),
-      transform var(--transitionTime);
-
     // ICON STYLE
     i {
       font-size: clamp(14px, 3vw, 20px);
-      color: grey;
-      transition-duration: var(--transitionTime);
+      color: #8e8e8e;
+      transition: color var(--transitionTime);
     }
 
     // HOVER STYLE
@@ -614,9 +637,13 @@ Error generating stack: `+r.message+`
       background-color: rgba(222, 222, 222, 0.7);
       box-shadow: 0px 0px 0px 4px rgba(222, 222, 222, 0.4),
         0px 0px 20px rgba(70, 70, 70, 0.4);
+
+      i {
+        color: #646464;
+      }
     }
   }
-`,m2=({closeSlider:e,setImageIndex:i,updateSessionStorage:o,album:a,imageIndex:t})=>{const r=()=>{if(a){const d=t+1;d<=a.images.length&&i(d)}},h=()=>{if(a&&t>0){const d=t-1;i(d),o(a.images[d].id)}},s=()=>{p(!0),r(),setTimeout(()=>p(!1),500)},n=()=>{p(!0),h(),setTimeout(()=>p(!1),500)},{setSwipeDisabled:p}=g2({handleNext:r,handlePrev:h,horizontalSensitivity:75,maxSwipeDistance:300});u2({handleNext:r,handlePrev:h,closeSlider:e});const l=a?t===a.images.length:!1;return m.jsxs(E2,{children:[m.jsx(pd,{icon:"fa-solid fa-arrow-left",onClick:n,position:"left"}),!l&&m.jsx(pd,{icon:"fa-solid fa-arrow-right",onClick:s,position:"right"})]})},E2=L.div``,ld=({keys:e,description:i})=>m.jsxs(M2,{children:[m.jsx("div",{className:"keyboard",children:e.map((o,a)=>m.jsx("span",{className:"key",children:o.icon?m.jsx("i",{className:o.icon}):o.text},a))}),m.jsx("p",{className:"description",children:i})]}),M2=L.div`
+`,m2=({closeSlider:e,setImageIndex:i,updateSessionStorage:o,album:a,imageIndex:t})=>{const r=()=>{if(a){const n=t+1;n<=a.images.length&&(i(n),o(a.images[n].id))}},h=()=>{if(a&&t>0){const n=t-1;i(n),o(a.images[n].id)}};g2({handleNext:r,handlePrev:h,sensitivityX:75}),u2({handleNext:r,handlePrev:h,closeSlider:e});const s=a?t===a.images.length:!1;return m.jsxs(E2,{children:[m.jsx(pd,{icon:"fa-solid fa-arrow-left",onClick:h,position:"left"}),!s&&m.jsx(pd,{icon:"fa-solid fa-arrow-right",onClick:r,position:"right"})]})},E2=L.div``,ld=({keys:e,description:i})=>m.jsxs(M2,{children:[m.jsx("div",{className:"keyboard",children:e.map((o,a)=>m.jsx("span",{className:"key",children:o.icon?m.jsx("i",{className:o.icon}):o.text},a))}),m.jsx("p",{className:"description",children:i})]}),M2=L.div`
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -740,21 +767,17 @@ Error generating stack: `+r.message+`
   }
 `,v2=()=>{const[e,i]=v.useState(0),o=Yi(),a=Zo(f=>f.slider.imageID),t=f=>{for(let y=0;y<Ge.length;y++){const K=Ge[y],g=K.images.find(_=>_.id===f);if(g)return{album:K,image:g}}return{album:null,image:null}},{album:r,image:h}=t(a),[s,n]=v.useState(h),p=f=>{sessionStorage.setItem("sliderState",JSON.stringify({isOpen:!0,imageID:f}))};v.useEffect(()=>{if(r&&a){const f=r.images.findIndex(y=>y.id===a);f!==-1&&(i(f),n(r.images[f]),p(a))}},[r,a]),v.useEffect(()=>{r&&e<r.images.length&&(n(r.images[e]),p(r.images[e].id))},[r,e]);const l=Zo(f=>f.slider.isOpen);v.useEffect(()=>(l?(document.body.style.overflow="hidden",document.body.style.position="fixed",document.body.style.width="100%"):(document.body.style.overflow="",document.body.style.position="",document.body.style.width=""),()=>{document.body.style.overflow="",document.body.style.position="",document.body.style.width=""}),[l]);const d=()=>{o(ch()),sessionStorage.removeItem("sliderState")},u=Ge.findIndex(f=>f.title===(r==null?void 0:r.title))+1,E=Ge[u]||null;return r&&s?m.jsxs(C2,{children:[e<r.images.length?m.jsxs(m.Fragment,{children:[m.jsx(p2,{images:r.images,imageIndex:e}),m.jsx(d2,{image:s,albumTitle:r.title}),m.jsx(sd,{downloadImg:`${s.path.hd}`,closeSlider:d})]}):m.jsxs(m.Fragment,{children:[m.jsx(c2,{nextAlbum:E,downloadZip:`${r.path}${r.zipFile}`}),m.jsx(sd,{closeSlider:d})]}),m.jsx(m2,{setImageIndex:i,updateSessionStorage:p,album:r,imageIndex:e,closeSlider:d}),m.jsx(y2,{})]}):null},C2=L.aside`
   width: 100%;
-  height: 100vh;
-  max-height: 100dvh;
-  padding-block-start: 1rem;
+  height: 100dvh;
   position: fixed;
   z-index: 50;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  //overflow: auto; // Permet le zoom sur le contenu
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  animation: sliderIN 200ms ease-out;
+  animation: sliderIn 200ms ease-out;
 `,w2=()=>{const e=ca(),i=Yi(),{idAlbum:o}=o1(),a=Ge.find(p=>p.id===o),t=Zo(p=>p.slider.isOpen),r=a?a.images:[];if(v.useEffect(()=>{a||e("/error")},[a,e]),v.useEffect(()=>{window.scrollTo(0,0)},[o]),v.useEffect(()=>{i(ch())},[i]),v.useEffect(()=>{const p=sessionStorage.getItem("sliderState");if(p){const{isOpen:l,imageID:d}=JSON.parse(p);l&&d&&i(mp({imageID:d}))}},[i]),!a)return null;const h=Ge.findIndex(p=>p.id===o),s=h>0?Ge[h-1]:null,n=h<Ge.length-1?Ge[h+1]:null;return m.jsxs(b2,{children:[m.jsx(jc,{img:`${a.path}/display/${a.cover.cover}.avif`,imgAlign:a.cover.coverAlignment,height:"50dvh",children:m.jsx("h1",{children:a.title})}),m.jsx(QE,{album:a,previousAlbum:s,nextAlbum:n}),m.jsx(h2,{images:r}),t&&m.jsx(v2,{})]})},b2=L.main`
   h1 {
     width: 100%;
