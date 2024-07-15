@@ -1,71 +1,65 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type SwipeControlsProps = {
   handleNext: () => void;
   handlePrev: () => void;
-  closeSlider?: () => void;
-  verticalSensitivity?: number;
-  horizontalSensitivity: number;
-  maxSwipeDistance: number;
+  sensitivityY?: number;
+  sensitivityX?: number;
+  maxSwipeDistance?: number;
 };
 
 const useSwipeControls = ({
   handleNext,
   handlePrev,
-  closeSlider,
-  horizontalSensitivity,
-  verticalSensitivity = 150, // Valeur par défaut
-  maxSwipeDistance,
+  sensitivityY = 100 /* Valeur par défaut */,
+  sensitivityX = 100 /* Valeur par défaut */,
+  maxSwipeDistance = 300 /* Valeur par défaut */,
 }: SwipeControlsProps) => {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
-  const [swipeDisabled, setSwipeDisabled] = useState(false);
+  const touchStartTime = useRef(0);
+  const touchEndTime = useRef(0);
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
-      if (!swipeDisabled) {
-        touchStartX.current = e.changedTouches[0].screenX;
-        touchStartY.current = e.changedTouches[0].screenY;
-      }
+      touchStartX.current = e.changedTouches[0].screenX;
+      touchStartY.current = e.changedTouches[0].screenY;
+      touchStartTime.current = e.timeStamp;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!swipeDisabled) {
-        touchEndX.current = e.changedTouches[0].screenX;
-        touchEndY.current = e.changedTouches[0].screenY;
-      }
+      touchEndX.current = e.changedTouches[0].screenX;
+      touchEndY.current = e.changedTouches[0].screenY;
     };
 
-    const handleTouchEnd = () => {
-      if (!swipeDisabled) {
-        const horizontalDistance = Math.abs(
-          touchStartX.current - touchEndX.current
-        );
-        const verticalDistance = Math.abs(
-          touchStartY.current - touchEndY.current
-        );
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndTime.current = e.timeStamp;
+      const timeElapsed = touchEndTime.current - touchStartTime.current;
+      const distanceX = Math.abs(touchStartX.current - touchEndX.current);
+      const distanceY = Math.abs(touchStartY.current - touchEndY.current);
 
-        if (
-          horizontalDistance > horizontalSensitivity &&
-          horizontalDistance < maxSwipeDistance
-        ) {
-          if (touchEndX.current - touchStartX.current > 0) {
-            handlePrev(); // Swipe vers la droite
-          } else {
-            handleNext(); // Swipe vers la gauche
-          }
-        }
+      console.log("-----------------");
+      console.log("horizontal", distanceX);
+      console.log("vertical", distanceY);
+      console.log("timeElapsed", timeElapsed);
 
-        if (
-          verticalDistance > verticalSensitivity &&
-          verticalDistance < maxSwipeDistance
-        ) {
-          if (touchEndY.current - touchStartY.current > 0) {
-            closeSlider && closeSlider(); // Swipe vers le bas
-          }
+      if (
+        distanceX >= sensitivityX &&
+        distanceX < maxSwipeDistance &&
+        distanceY < sensitivityY &&
+        timeElapsed > 100 // Vérifie que ce n'est pas un tap rapide (100ms)
+      ) {
+        if (touchEndX.current - touchStartX.current > 0) {
+          console.log("swipe droite");
+          handlePrev(); // Swipe vers la droite
+        } else {
+          console.log("swipe gauche");
+          handleNext(); // Swipe vers la gauche
         }
+      } else if (timeElapsed <= 100) {
+        console.log("tap détecté, aucune action");
       }
     };
 
@@ -78,17 +72,7 @@ const useSwipeControls = ({
       document.removeEventListener("touchmove", handleTouchMove);
       document.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [
-    handleNext,
-    handlePrev,
-    closeSlider,
-    swipeDisabled,
-    horizontalSensitivity,
-    verticalSensitivity,
-    maxSwipeDistance,
-  ]);
-
-  return { setSwipeDisabled };
+  }, [handleNext, handlePrev, sensitivityX, sensitivityY, maxSwipeDistance]);
 };
 
 export default useSwipeControls;

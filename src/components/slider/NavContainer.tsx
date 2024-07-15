@@ -24,9 +24,11 @@ const NavContainer = ({
       const newIndex = imageIndex + 1;
       if (newIndex <= album.images.length) {
         setImageIndex(newIndex);
+        updateSessionStorage(album.images[newIndex].id);
       }
     }
   };
+
   const handlePrev = () => {
     if (album && imageIndex > 0) {
       const newIndex = imageIndex - 1;
@@ -35,24 +37,10 @@ const NavContainer = ({
     }
   };
 
-  const handleNextClick = () => {
-    setSwipeDisabled(true);
-    handleNext();
-    setTimeout(() => setSwipeDisabled(false), 500);
-  };
-
-  const handlePrevClick = () => {
-    setSwipeDisabled(true);
-    handlePrev();
-    setTimeout(() => setSwipeDisabled(false), 500);
-  };
-
-  const { setSwipeDisabled } = useSwipeControls({
+  useSwipeControls({
     handleNext,
     handlePrev,
-    // closeSlider, verticalSensitivity: 100, // Swipe vers le bas pour fermer le slider
-    horizontalSensitivity: 75,
-    maxSwipeDistance: 300,
+    sensitivityX: 75, // valeur par défaut 100(px)
   });
 
   useKeyControls({
@@ -67,13 +55,13 @@ const NavContainer = ({
     <NavContainerStyled>
       <NavButtonSlider
         icon="fa-solid fa-arrow-left"
-        onClick={handlePrevClick}
+        onClick={handlePrev}
         position="left"
       />
       {!isLastSlide && (
         <NavButtonSlider
           icon="fa-solid fa-arrow-right"
-          onClick={handleNextClick}
+          onClick={handleNext}
           position="right"
         />
       )}
