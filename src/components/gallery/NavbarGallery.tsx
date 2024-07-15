@@ -69,7 +69,8 @@ const NavbarGalleryStyled = styled.nav`
   top: 0;
   z-index: 10;
   background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
   display: flex;
   align-items: center;
