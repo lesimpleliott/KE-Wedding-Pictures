@@ -25,4 +25,5 @@ notes.md
 *.sw?
 .env
 public/photos/
+public/photos_DEMO/
 public/download/
