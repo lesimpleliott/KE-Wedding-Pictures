@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import dataPhotos from "../../assets/exportData.json";
+import dataPhotos from "../../assets/exportData_demo.json";
 
 type NavbarProps = {
   menuIsOpen: boolean;
@@ -13,7 +13,7 @@ const Navbar = ({ menuIsOpen, handleClick, logout }: NavbarProps) => {
   // Fermeture du menu lors d'un clic en dehors de celui-ci
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      console.log(event);
+      // console.log(event);
       if (
         event.target instanceof HTMLElement &&
         !event.target.closest(".navBar") &&

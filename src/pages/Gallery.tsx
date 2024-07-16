@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import data from "../assets/exportData.json";
+import data from "../assets/exportData_demo.json";
 import NavbarGallery from "../components/gallery/NavbarGallery";
 import HeroBanner from "../components/HeroBanner";
 import MasonryLayout from "../layouts/MasonryLayout";

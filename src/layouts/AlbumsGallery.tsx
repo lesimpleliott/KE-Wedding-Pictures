@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import data from "../assets/exportData.json";
+import data from "../assets/exportData_demo.json";
 import AlbumCard from "../components/AlbumCard";
 
 const AlbumsGallery = () => {

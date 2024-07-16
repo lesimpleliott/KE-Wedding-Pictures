@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import data from "../assets/exportData.json";
+import data from "../assets/exportData_demo.json";
 import ActionContainer from "../components/slider/ActionContainer";
 import ImageContainer from "../components/slider/ImageContainer";
 import ImageTitle from "../components/slider/ImageTitle";
