@@ -14,11 +14,11 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {password === import.meta.env.VITE_KATELIOPWD && <Menu />}
+      {password === import.meta.env.VITE_KEDEMO && <Menu />}
 
       <Routes>
         {/* Redirige immédiatement vers /home si le mot de passe est correct */}
-        {password === import.meta.env.VITE_KATELIOPWD && (
+        {password === import.meta.env.VITE_KEDEMO && (
           <Route path="/" element={<Navigate to="/home" />} />
         )}
 
@@ -31,7 +31,7 @@ const App = () => {
         {/* Si le mot de passe est incorrect, affiche la page de connexion */}
         <Route path="/" element={<Login />} />
       </Routes>
-      {password === import.meta.env.VITE_KATELIOPWD && <Footer />}
+      {password === import.meta.env.VITE_KEDEMO && <Footer />}
     </BrowserRouter>
   );
 };

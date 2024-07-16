@@ -27,7 +27,7 @@ const LoginForm = () => {
     const pwdInput = document.getElementById("pwdInput") as HTMLInputElement;
     const loginForm = document.getElementById("loginForm") as HTMLFormElement;
 
-    if (pwdInput.value === import.meta.env.VITE_KATELIOPWD) {
+    if (pwdInput.value === import.meta.env.VITE_KEDEMO) {
       dispatch(setPassword(pwdInput.value));
       sessionStorage.setItem("password", pwdInput.value);
       navigate("/home");

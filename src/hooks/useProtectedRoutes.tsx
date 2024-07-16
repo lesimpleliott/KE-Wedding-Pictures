@@ -5,7 +5,7 @@ import { RootState } from "../store";
 const ProtectedRoutes = () => {
   const password = useSelector((state: RootState) => state.app.password);
 
-  return password === import.meta.env.VITE_KATELIOPWD ? (
+  return password === import.meta.env.VITE_KEDEMO ? (
     <Outlet />
   ) : (
     <Navigate to="/" />

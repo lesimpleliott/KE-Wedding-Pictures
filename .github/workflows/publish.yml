@@ -24,7 +24,7 @@ jobs:
       # Optionnel: si variables d'environnement
       - name: Add environment variables
         run: |
-          echo "VITE_KATELIOPWD=${{ secrets.VITE_KATELIOPWD }}" >> $GITHUB_ENV
+          echo "VITE_KEDEMO=${{ secrets.VITE_KEDEMO }}" >> $GITHUB_ENV
 
       - name: Build the project
         run: npm run build
