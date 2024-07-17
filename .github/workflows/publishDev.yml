@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Push (main)
+    name: Build and Push (dev)
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -32,11 +32,11 @@ jobs:
       - name: List dist directory
         run: ls -la dist
 
-      - name: Push to buildDemo branch
+      - name: Push to buildDev branch
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
-          BRANCH: buildDemo # Le nom de la branche où tu veux pousser les assets
+          BRANCH: buildDev # Le nom de la branche où tu veux pousser les assets
           FOLDER: dist # Le répertoire où tes assets sont générés
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub l'ajoutera automatiquement - pas besoin de récupérer un token
           MESSAGE: "Build: ({sha}) {msg}" # Le message de commit
